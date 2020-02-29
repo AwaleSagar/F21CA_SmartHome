@@ -1,0 +1,72 @@
+﻿address,zone,appliance,state
+0,A,Lights,false
+1,A,Roller Shades 1 (Up),false
+2,A,Roller Shades 1 (Down),false
+3,A,Roller Shades 2 (Up),false
+4,A,Roller Shades 2 (Down),false
+5,A,Roller Shades 3 (Up),false
+6,A,Roller Shades 3 (Down),false
+7,A,Roller Shades 4 (Up),false
+8,A,Roller Shades 4 (Down),false
+9,A,Heater,false
+19,B,Lights 1,false
+20,B,Lights 2,false
+30,C,Lights,false
+40,D,Lights 1,false
+41,D,Lights 2,false
+42,D,Roller Shades (Up),false
+43,D,Roller Shades (Down),false
+44,D,Heater,false
+54,E,Lights,false
+55,E,Roller Shades (Up),false
+56,E,Roller Shades (Down),false
+57,E,Heater,false
+58,E,Siren,false
+59,E,Alarm Key Pad (Arm),false
+60,E,Alarm Key Pad (Disarm),false
+68,F,Lights 1,false
+69,F,Lights 2,false
+70,F,Roller Shades (Up),false
+71,F,Roller Shades (Down),false
+72,F,Garage Door (Open),false
+73,F,Garage Door (Close),false
+83,G,Lights,false
+84,G,Roller Shades (Up),false
+85,G,Roller Shades (Down),false
+86,G,Heater 1,false
+87,G,Heater 2,false
+97,H,Lights,false
+98,H,Roller Shades (Up),false
+99,H,Roller Shades (Down),false
+100,H,Heater,false
+110,I,Lights 1,false
+111,I,Lights 2,false
+112,I,Heater,false
+122,J,Lights,false
+123,J,Roller Shades (Up),false
+124,J,Roller Shades (Down),false
+125,J,Heater,false
+135,K,Lights,false
+136,K,Heater,false
+146,L,Lights,false
+147,L,Roller Shades (Up),false
+148,L,Roller Shades (Down),false
+149,L,Heater,false
+159,M,Lights,false
+160,M,Roller Shades (Up),false
+161,M,Roller Shades (Down),false
+162,M,Heater,false
+172,N,Lights 1,false
+173,N,Lights 2,false
+174,N,Lights 3,false
+175,N,Roller Shades (Up),false
+176,N,Roller Shades (Down),false
+177,N,Heater,false
+187,O,Lights Porch 1,false
+188,O,Lights Porch 2,false
+189,O,Lights Pool,false
+190,O,Lights Garden,false
+191,O,Lights Entrance,false
+192,O,Siren,false
+193,O,Entrance Gate (Open),false
+194,O,Entrance Gate (Close),false

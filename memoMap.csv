@@ -1,0 +1,37 @@
+﻿address,zone,memory,value
+256,-,Using DLST,0
+129,-,Time Scalev,0
+130,-,Latitude,0
+131,-,Longitude,0
+132,-,Air Temperature [K],0
+133,-,Relative Humidity,0
+134,-,Minimum Air Temperature [K],0
+135,-,Maximum Air Temperature [K],0
+136,-,Dew Point Temperature [K],0
+137,-,Wind Speed [m/s],0
+138,-,Cloudiness,0
+139,-,Sun Zenith,0
+140,-,Sun Azimuth,0
+141,-,Instant Power [w],0
+142,-,Current Hour Energy Consumption [J],0
+143,-,Current Day Energy Consumption [J],0
+144,-,Current Week Energy Consumption [J],0
+145,-,Current Month Energy Consumption [J],0
+146,-,Last Hour Energy Consumption [J],0
+147,-,Last Day Energy Consumption [J],0
+148,-,Last Week Energy Consumption [J],0
+149,-,Last Month Energy Consumption [J],0
+150,A,Temperature [K],0
+151,B,Temperature [K],0
+152,C,Temperature [K],0
+153,D,Temperature [K],0
+154,E,Temperature [K],0
+155,F,Temperature [K],0
+156,G,Temperature [K],0
+157,H,Temperature [K],0
+158,I,Temperature [K],0
+159,J,Temperature [K],0
+160,K,Temperature [K],0
+161,L,Temperature [K],0
+162,M,Temperature [K],0
+163,N,Temperature [K],0
