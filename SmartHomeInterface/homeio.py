@@ -1,5 +1,6 @@
 import sys
 import time
+import psutil
 import clr
 import pymongo
 
@@ -18,6 +19,20 @@ query_1 = {"appliance": {'$regex': '.*Light.*'}}
 
 start = time.time()
 
+def checkIfProcessRunning(processName):
+    '''
+    Check if there is any running process that contains the given name processName.
+    '''
+    #Iterate over the all the running process
+    for proc in psutil.process_iter():
+        try:
+            # Check if process name contains the given name string.
+            if processName.lower() in proc.name().lower():
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            pass
+    return False
+
 def getmemval(x):
 	temp = MemoryMap.Instance.GetFloat(int(x), MemoryType.Memory)
 	return temp.Value
@@ -29,6 +44,8 @@ def k2cel(x):
 	return round((x-273.15),2)
 
 while(1):
+	# process = "notepad++.exe"
+	# print(checkIfProcessRunning(process))
 	data = list(mycol.find(query_1).sort("address"))
 	elapsed_time = time.time() - start
 	for i in range(len(data)):
