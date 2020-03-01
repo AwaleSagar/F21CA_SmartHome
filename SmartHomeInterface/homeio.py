@@ -50,18 +50,18 @@ while(1):
 					query = { "address": x[0] }
 					newvalues = { "$set": { "value": tem } }
 					memcol.update_one(query, newvalues)
-					print(tem)
+					# print(tem)
 				elif x[1] == 1:
 					tem = getmemval(x[0])
 					temc = j2kwh(tem)
 					query = { "address": x[0] }
 					newvalues = { "$set": { "value": temc } }
 					memcol.update_one(query, newvalues)
-					print(temc)
+					# print(temc)
 				elif x[1] == 2:
 					tem = getmemval(x[0])
 					temc = k2cel(tem)
 					query = { "address": x[0] }
 					newvalues = { "$set": { "value": temc } }
 					memcol.update_one(query, newvalues)
-					print(temc)
+					# print(temc)
