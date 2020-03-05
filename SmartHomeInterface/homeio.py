@@ -9,13 +9,15 @@ clr.AddReference('EngineIO')
 from EngineIO import *
 from globals import *
 
+# myclient = pymongo.MongoClient("mongodb://0.tcp.ngrok.io:16959")
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["shome"]
 mycol = mydb["homeio"]
 memcol = mydb["homeiomem"]
 
 
-query_1 = {"appliance": {'$regex': '.*Light.*'}}
+# query_1 = {"appliance": {'$regex': '.*Light.*'}}
+
 
 start = time.time()
 
@@ -46,7 +48,7 @@ def k2cel(x):
 while(1):
 	# process = "notepad++.exe"
 	# print(checkIfProcessRunning(process))
-	data = list(mycol.find(query_1).sort("address"))
+	data = list(mycol.find().sort("address"))
 	elapsed_time = time.time() - start
 	for i in range(len(data)):
 		temp = data[i]
