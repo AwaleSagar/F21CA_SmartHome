@@ -1,0 +1,1 @@
+{"0": "affirm", "1": "deny", "10": "take_action_duration", "11": "take_action_variable", "12": "thanking", "2": "get_info", "3": "goodbye", "4": "greet", "5": "inform", "6": "nicetomeeyou", "7": "react_positive", "8": "repair_inform", "9": "take_action"}
