@@ -1,0 +1,19 @@
+{'user_id': 'test-user',
+    'question': 'Hello there',   # The string representation of the user's utterance'
+    'session_id': 'some-session-id',   # A unique id PER DIALOGUE. For clarity, it could be in the format: "<project_number>.UUID4"
+    'overrides': {
+       'BOT_LIST': [   # List of ALL the bots that should be called this turn. For most cases this list will remain the same throughout your project.
+         'evi',  # For default Alana bots (that are already in the enseble) you can use just their name
+         {'greetings': 'http://example.ngrok.io'},   # Don't forget to put your own bot in this list! It should be added as a dictionary in order to include the url
+         'news_bot_v2',
+         'wiki_bot_mongo',
+         'persona'
+       ],
+       'PRIORITY_BOTS': [    # The priority in which the response will be selected amongst the candidates
+         'greetings',
+         ['news_bot_v2', 'wiki_bot_mongo'],   # Nested list means that these bots share the same priority
+         'persona', 
+         'evi'
+       ]
+     }
+   }

@@ -1,8 +1,7 @@
-#%%
 from rasa.nlu.model import Interpreter
 
-utterance = u"please turn off bedroom heater"
-model = "./models/nlu"
+utterance = "can you turn off the lights in bedroom one"
+model = "./models/nlu/"
 
 # loading the model from one directory or zip file
 interpreter = Interpreter.load(model)
@@ -13,6 +12,5 @@ interpretation = interpreter.parse(utterance)
 # printing the parsed output
 print(interpretation)
 
-# %%
-
-#hjzdcekjhzbcjehbdzjce
+f = open('testresponse.txt','a')
+f.write(str(interpretation))
