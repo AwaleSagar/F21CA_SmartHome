@@ -461,30 +461,24 @@
 - can you [turn on](action) [every](location) [light](appliance) 
 - can you [switch off](action) [every](location) [light](appliance) 
 - can you [switch on](action) [every](location) [light](appliance) 
-- i'd like to [dim](unit) the [light](appliance) in the [bedroom](location) 
-- i'd like to [dim](unit) the [light](appliance) in the[living](location) room
-- i'd like to [dim](unit) the [light](appliance) in the [kitchen](location) 
-- i'd like to [brighten](unit) the [light](appliance) in the [bedroom](location) 
-- i'd like to [brighten](unit) the [light](appliance) in the[living](location) room
-- i'd like to [brighten](unit) the [light](appliance) in the [kitchen](location) 
-- can you [dim](unit) the [light](appliance) in the [bedroom](location) 
-- can you [dim](unit) the [light](appliance) in the[living](location) room
-- can you [dim](unit) the [light](appliance) in the [kitchen](location) 
-- can you [brighten](unit) the [light](appliance) in the [bedroom](location) 
-- can you [brighten](unit) the [light](appliance) in the[living](location) room
-- can you [brighten](unit) the [light](appliance) in the [kitchen](location) 
-- i'd like to [decrease](unit) the [light](appliance) intensity in the [bedroom](location)
-- i'd like to [decrease](unit) the [light](appliance) intensity in the[living](location) room
-- i'd like to [decrease](unit) the [light](appliance) intensity in the [kitchen](location) 
-- i'd like to [increase](unit) the [light](appliance) intensity in the [bedroom](location) 
-- i'd like to [increase](unit) the [light](appliance) intensity in the[living](location) room
-- i'd like to [increase](unit) the [light](appliance) intensity in the [kitchen](location) 
-- can you [decrease](unit) the [light](appliance) intensity in the [bedroom](location) 
-- can you [decrease](unit) the [light](appliance) intensity in the[living](location) room
-- can you [decrease](unit) the [light](appliance) intensity in the [kitchen](location) 
-- can you [increase](unit) the [light](appliance) intensity in the [bedroom](location) 
-- can you [increase](unit) the [light](appliance) intensity in the[living](location) room
-- can you [increase](unit) the [light](appliance) intensity in the [kitchen](location) 
+- can you [open](action) roller [shade](appliance) for [living](location) room 
+- can you [open](action) roller [shade](appliance) for [kitchen](location)
+- can you [open](action) roller [shade](appliance) for [bedroom](location) [1](number)
+- can you [close](action) roller [shade](appliance) for [living](location) room 
+- can you [close](action) roller [shade](appliance) for [kitchen](location)
+- can you [close](action) roller [shade](appliance) for [bedroom](location) [one](number)
+- i'd like to [open](action) roller [shade](appliance) for [living](location) room 
+- i'd like to [open](action) roller [shade](appliance) for [kitchen](location)
+- i'd like to [open](action) roller [shade](appliance) for [bedroom](location) [1](number)
+- i'd like to [close](action) roller [shade](appliance) for [living](location) room 
+- i'd like to [close](action) roller [shade](appliance) for [kitchen](location)
+- i'd like to [close](action) roller [shade](appliance) for [bedroom](location) [one](number)
+- [open](action) roller [shade](appliance) for [living](location) room 
+- [open](action) roller [shade](appliance) for [kitchen](location)
+- [open](action) roller [shade](appliance) for [bedroom](location) [1](number)
+- [close](action) roller [shade](appliance) for [living](location) room 
+- [close](action) roller [shade](appliance) for [kitchen](location)
+- [close](action) roller [shade](appliance) for [bedroom](location) [one](number)
 
 ## intent:take_action_variable
 - i'd like to [dim](unit) the [light](appliance) in the [bedroom](location) 
@@ -511,18 +505,18 @@
 - can you [increase](unit) the [light](appliance) intensity in the [bedroom](location) 
 - can you [increase](unit) the [light](appliance) intensity in the[living](location) room
 - can you [increase](unit) the [light](appliance) intensity in the [kitchen](location) 
-- i'd like to turn [down](unit) the [heater](appliance) in the [bedroom](location) 
-- i'd like to turn [down](unit) the [heater](appliance) in the[living](location) room
-- i'd like to turn [down](unit) the [heater](appliance) in the [kitchen](location) 
-- i'd like to turn [up](unit) the [heater](appliance) in the [bedroom](location) 
-- i'd like to turn [up](unit) the [heater](appliance) in the[living](location) room
-- i'd like to turn [up](unit) the [heater](appliance) in the [kitchen](location) 
-- can you turn [down](unit) the [heater](appliance) in the [bedroom](location)
-- can you turn [down](unit) the [heater](appliance) in the[living](location) room
-- can you turn [down](unit) the [heater](appliance) in the [kitchen](location) 
-- can you turn [up](unit) the [heater](appliance) in the [bedroom](location)
-- can you turn [up](unit) the [heater](appliance) in the[living](location) room
-- can you turn [up](unit) the [heater](appliance) in the [kitchen](location)
+- i'd like to [turn down](unit) the [heater](appliance) in the [bedroom](location) 
+- i'd like to [turn down](unit) the [heater](appliance) in the[living](location) room
+- i'd like to [turn down](unit) the [heater](appliance) in the [kitchen](location) 
+- i'd like to [turn up](unit) the [heater](appliance) in the [bedroom](location) 
+- i'd like to [turn up](unit) the [heater](appliance) in the[living](location) room
+- i'd like to [turn up](unit) the [heater](appliance) in the [kitchen](location) 
+- can you [turn down](unit) the [heater](appliance) in the [bedroom](location)
+- can you [turn down](unit) the [heater](appliance) in the[living](location) room
+- can you [turn down](unit) the [heater](appliance) in the [kitchen](location) 
+- can you [turn up](unit) the [heater](appliance) in the [bedroom](location)
+- can you [turn up](unit) the [heater](appliance) in the[living](location) room
+- can you [turn up](unit) the [heater](appliance) in the [kitchen](location)
 - i'd like to [decrease](unit) the [light](appliance) intensity in the [bedroom](location)
 - i'd like to [decrease](unit) the [light](appliance) intensity in the[living](location) room
 - i'd like to [decrease](unit) the [light](appliance) intensity in the [kitchen](location) 
@@ -537,39 +531,38 @@
 - can you [increase](unit) the [light](appliance) intensity in the [kitchen](location) 
 
 ## intent:take_action_duration
-- [turn off](action) the [bedroom](location) [light](appliance) for [four](number) [hours](duration)
-- [turn on](action) the [bedroom](location) [light](appliance) for [four](number) [hours](duration)
-- [turn off](action) the [living](location) [light](appliance) for [four](number) [hours](duration)
-- [turn on](action) the [living](location) [light](appliance) for [four](number) [hours](duration)
-- [turn off](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- [turn on](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- [turn off](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- [turn on](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- [switch off](action) the [bedroom](location) [light](appliance) for [four](number) [hours](duration)
-- [switch on](action) the [bedroom](location) [light](appliance) for [four](number) [hours](duration)
-- [switch off](action) the [living](location) [light](appliance) for [four](number) [hours](duration)
-- [switch on](action) the [living](location) [light](appliance) for [four](number) [hours](duration)
-- [switch off](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- [switch on](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- [switch off](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- [switch on](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- can you [turn off](action) the [bedroom](location) [light](appliance) for [four](number) [hours](duration)
-- can you [turn on](action) the [bedroom](location) [light](appliance) for [four](number) [hours](duration)
-- can you [turn off](action) the [living](location) [light](appliance) for [four](number) [hours](duration)
-- can you [turn on](action) the [living](location) [light](appliance) for [four](number) [hours](duration)
-- can you [turn off](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- can you [turn on](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- can you [turn off](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- can you [turn on](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- can you [switch off](action) the [bedroom](location) [light](appliance) for [four](number) [hours](duration)
-- can you [switch on](action) the [bedroom](location) [light](appliance) for [four](number) [hours](duration)
-- can you [switch off](action) the [living](location) [light](appliance) for [four](number) [hours](duration)
-- can you [switch on](action) the [living](location) [light](appliance) for [four](number) [hours](duration)
-- can you [switch off](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- can you [switch on](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- can you [switch off](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-- can you [switch on](action) the [living](location) [tv](appliance) for [four](number) [hours](duration)
-
+- [turn off](action) the [bedroom](location) [light](appliance) for [four](number) [hours](time)
+- [turn on](action) the [bedroom](location) [light](appliance) for [four](number) [hours](time)
+- [turn off](action) the [living](location) [light](appliance) for [four](number) [hours](time)
+- [turn on](action) the [living](location) [light](appliance) for [four](number) [hours](time)
+- [turn off](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- [turn on](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- [turn off](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- [turn on](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- [switch off](action) the [bedroom](location) [light](appliance) for [four](number) [hours](time)
+- [switch on](action) the [bedroom](location) [light](appliance) for [four](number) [hours](time)
+- [switch off](action) the [living](location) [light](appliance) for [four](number) [hours](time)
+- [switch on](action) the [living](location) [light](appliance) for [four](number) [hours](time)
+- [switch off](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- [switch on](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- [switch off](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- [switch on](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- can you [turn off](action) the [bedroom](location) [light](appliance) for [four](number) [hours](time)
+- can you [turn on](action) the [bedroom](location) [light](appliance) for [four](number) [hours](time)
+- can you [turn off](action) the [living](location) [light](appliance) for [four](number) [hours](time)
+- can you [turn on](action) the [living](location) [light](appliance) for [four](number) [hours](time)
+- can you [turn off](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- can you [turn on](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- can you [turn off](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- can you [turn on](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- can you [switch off](action) the [bedroom](location) [light](appliance) for [four](number) [hours](time)
+- can you [switch on](action) the [bedroom](location) [light](appliance) for [four](number) [hours](time)
+- can you [switch off](action) the [living](location) [light](appliance) for [four](number) [hours](time)
+- can you [switch on](action) the [living](location) [light](appliance) for [four](number) [hours](time)
+- can you [switch off](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- can you [switch on](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- can you [switch off](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
+- can you [switch on](action) the [living](location) [tv](appliance) for [four](number) [hours](time)
 
 ## intent:inform
 - [kitchen](location) please
@@ -582,7 +575,6 @@
 - for the [bedroom](location) [two](number) please
 - for the [living](location) please
 - for the [washroom](location) please
-
 
 ## intent:repair_inform
 - actually i would prefer [light](appliance) in [bedroom](location)
@@ -604,7 +596,6 @@
 - in reality i would like it for [light](appliance) in [bedroom](location)
 - in reality i would like it for [tv](appliance) in [living](location) room
 
-
 ## intent:get_info
 - give me an [eco-friendly](info) fact
 - tell me an [eco-friendly](info)
@@ -619,9 +610,6 @@
 - i'd like to know an [eco-fact](info) about the [light](appliance)
 - i'd like to know an [eco-fact](info) about the [heating](appliance)
 - i'd like to know an [eco-fact](info) about the [tv](appliance)
-- give me an [energy](info) tip about the [fridge](appliance)
-- give me an [energy](info) tip about the [light](appliance)
-- give me an [energy](info) tip about the [fan](appliance)
 - tell me how to [recycle](info)
 - tell me how to [save](info) [gas](info)
 - tell me how to [save](info) [water](info)
@@ -633,15 +621,69 @@
 - in what ways can i [save](info) [water](info)
 - give me an [eco-fact](info) about the [oven](appliance)
 - give me an [eco-fact](info) about [light](appliance)
-- how do i [save](info) [energy](info)
-- how can i [save](info) [energy](info)
 - how do i [save](info) [gas](info)
 - how can i [save](info) [gas](info)
 - how do i [save](info) [water](info)
 - how can i [save](info) [water](info)
-- how do i [save](info) [electricity](info)
-- how can i [save](info) [electricity](info)
 
+## intent:get_info_energy
+- hey can you let me know what was my [energy](info) [consumption](info) for [yesterday](time) ?
+- hey can you let me know what is my [energy](info) [consumption](info) for [today](time) ?
+- hey can you let me know what was my [energy](info) [consumption](info) for [this week](time) ?
+- hey can you let me know what is my [energy](info) [consumption](info) for [this month](time) ?
+- what is my [energy](info) [consumption](info) for [today](time) ?
+- what was my [energy](info) [consumption](info) for [yesterday](time) ?
+- what was my [energy](info) [consumption](info) for [this week](time) ?
+- what was my [energy](info) [consumption](info) for [this month](time) ?
+- I'd like to know my [energy](info) [consumption](info) for [today](time) ?
+- I'd like to know my [energy](info) [consumption](info) for [yesterday](time) ?
+- I'd like to know my [energy](info) [consumption](info) for [this week](time) ?
+- I'd like to know my [energy](info) [consumption](info) for [this month](time) ?
+- I would like to know my [energy](info) [consumption](info) for [today](time) ?
+- I would like to know my [energy](info) [consumption](info) for [yesterday](time) ?
+- I would like to know my [energy](info) [consumption](info) for [this week](time) ?
+- I would like to know my [energy](info) [consumption](info) for [this month](time) ?
+- Can you tell me how much [energy](info) did I [consumed](info) [today](time) ?
+- Can you tell me how much [energy](info) did I [consumed](info) [yesterday](time) ?
+- Can you tell me how much [energy](info) did I [consumed](info) [this week](time) ?
+- Can you tell me how much [energy](info) did I [consumed](info) [this month](time) ?
+
+## intent: air_quality_today
+- how [good](good) is the air today
+- how [nice](good) is the air today
+- how [great](good) is the air today
+- how is air quality today
+- what are the measures of air quality today
+
+## intent: air_quality_historical
+- give me the historical for air quality of the [last](hierarchy_number) [two](number) [months](time)
+- give me the historical for air quality of the [last](hierarchy_number) [10](number) [months](time)
+- how good was the air quality of the [last](hierarchy_number) [three](number) [years](time)
+- how good was the air quality of the [last](hierarchy_number) [4](number) [years](time)
+- how was air quality [three](number) [days](time) ago
+- was air quality [nice](good) a [week](time)
+- how [good](good) air quality was [last](hierarchy_number) [year](time)
+
+## intent: air_quality_forecast
+- how [good](good) will air be in [five](number) [weeks](time)
+- how [good](good) will air be in [6](number) [weeks](time)
+- how [great](good) will air be [next](hierarchy_number) [day](time)
+- will air be [great](good) tomorrow
+- will we have nice air quality for [next](hierarchy_number) [week](time)
+- will air quality be [good](good) in [future](hierarchy_number) [days](time)
+
+## intent: sos
+- please [help](signal) me its an [emergency](priority)
+- [code red](priority)
+- I need [help](signal) its an [emergency](priority)
+- I need [help](signal) its [urgent](priority)
+- I am in [trouble](priority)
+- I need [help](signal) [asap](priority)
+- I need [help](signal) [as soon as possible](priority)
+- I am in [trouble](priority) I need [help](signal) [asap](priority)
+- There is a [fire](priority) in the house
+- Please call [911](priority)
+- I am in [pain](priority) please [help](signal)
 
 ## intent:nicetomeeyou
 - Delighted to make your acquaintance.
@@ -690,7 +732,6 @@
 - See you around. It was a pleasure meeting you.
 - Thank you for this meeting. It was great to see you.
 - nice to meet you
-
 
 ## intent:react_positive
 - :)
@@ -760,7 +801,7 @@ data/lookups/number.txt
 ## lookup:appliance
 data/lookups/appliance.txt
 
-## lookup:duration
+## lookup:time
 - minutes
 - minute
 - day
@@ -776,6 +817,7 @@ data/lookups/appliance.txt
 - attic
 - garage
 - storeroom
+- office
 
 ## lookup:info
 - enviornmental
@@ -792,8 +834,6 @@ data/lookups/appliance.txt
 - plant
 - compost 
 - bio
-- 
-
 
 ## synonym:every
 - all
@@ -802,6 +842,18 @@ data/lookups/appliance.txt
 - each and every
 - each 
 - the utmost
+
+## synonym:energy
+- power
+- electricity
+
+## synonym:shade
+- shades
+- blind
+- blinds
+- shutter
+- curtain
+- jalousie
 
 ## synonym:light
 - lights
