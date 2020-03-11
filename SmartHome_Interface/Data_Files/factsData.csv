@@ -1,102 +1,125 @@
 ﻿Fact id,Fact Category,Things,Fact
-1,eco,"","The garbage in a landfill stays for a for about 30 years. "
-2,eco,"",In 1995 over 200 of the world landfills were full.
-3,eco,"",Each person throws away approximately four pounds of garbage every day.
-4,eco,"",One bus carries as many people as 40 cars!
-5,eco,"",More than 1/3 of all energy is used by people at home
-6,eco,"",Most families throw away about 88 pounds of plastic every year
-7,eco,"","We each use about 12,000 gallons of water every year"
-8,eco,"",1/3 of all water is used to flush the toilet.
-9,eco,"",The 500 million automobiles on earth burn an average of 2 gallons of fuel a day.
-10,eco,"",Each gallon of fuel releases 20 pounds of carbon dioxide into the air.
-11,eco,"",Approximately 5 million tons of oil produced in the world each ear ends up in the ocean.
-12,eco,"",The energy we save when we recycle one glass bottle is enough to light a traditional light bulb for four hours
-13,eco,"","For every 2000 pounds of paper (1 ton) recycled, we save 7,000 gallons of water free from chemicals."
-14,eco,"","Recycled paper requires 64% less energy than making paper from virgin wood pulp, and can save many trees"
-15,eco,"",Every ton of paper that is recycled saves 17 trees
-16,eco,"",The amount of wood and paper we throw away is enough to heat 50 million homes for 20 years
-17,eco,"",Earth is 2/3 water. but all the fresh water streams only represent one hundredth of one percent.
-18,eco,"",14 billion pounds of trash is dumped into the ocean every year
-19,eco,"",It takes 90% less energy to recycle aluminum cans than to make new ones
-20,eco,"",5 billion aluminum cans are used each year
-21,eco,"",84 percent of all household waste can be recycled.
-22,eco,"",Computers pose an environmental threat because much of the material that makes them up is hazardous. A typical monitor contains 4-5 pounds of lead.
-23,eco,"",Each year billions of used batteries are thrown away in the United States. This constitutes 88% of the mercury and 54% of the cadmium deposited into our landfills
-24,eco,"",Approximately only 10 percent of every landfill can be cleaned up.
-25,eco,"","Ivory comes from dead elephants, its best not to buy it."
-26,eco,"","Fur coats often come from endangered animals, it's best not to buy them."
-27,eco,"",One gallon of motor oil can contaminate up to 2 million gallons of water. so dispose of properly!
-28,eco,"","In the Los Angeles area alone, 10 metric tons of plastic fragments—like grocery bags, straws and soda bottles—are carried into the Pacific Ocean every day."
-29,eco,"",Over the last ten years we have produced more plastic than during the whole of the last century.
-30,eco,"","50 percent of the plastic we use, we use just once and throw away."
-31,eco,"",Enough plastic is thrown away each year to circle the earth four times.
-32,eco,"",We currently recover only five percent of the plastics we produce.
-33,eco,"",The average American throws away approximately 185 pounds of plastic per year.
-34,eco,"",Plastic accounts for around 10 percent of the total waste we generate.
-35,eco,"",The production of plastic uses around eight percent of the world's oil production (bioplastics are not a good solution as they require food source crops).
-36,eco,"",Americans throw away 35 billion plastic water bottles every year (source: Brita)
-37,eco,"",Plastic in the ocean breaks down into such small segments that pieces of plastic from a one liter bottle could end up on every mile of beach throughout the world.
-38,eco,"",Annually approximately 500 billion plastic bags are used worldwide. More than one million bags are used every minute.
-39,eco,"",46 percent of plastics float (EPA 2006) and it can drift for years before eventually concentrating in the ocean gyres.
-40,eco,"","It takes 500-1,000 years for plastic to degrade."
-41,eco,"",Billions of pounds of plastic can be found in swirling convergences in the oceans making up about 40 percent of the world's ocean surfaces. 80 percent of pollution enters the ocean from the land.
-42,eco,"","The Great Pacific Garbage Patch is located in the North Pacific Gyre off the coast of California and is the largest ocean garbage site in the world. This floating mass of plastic is twice the size of Texas, with plastic pieces outnumbering sea life six to one."
-43,eco,"","Plastic constitutes approximately 90 percent of all trash floating on the ocean's surface, with 46,000 pieces of plastic per square mile."
-44,eco,"","One million sea birds and 100,000 marine mammals are killed annually from plastic in our oceans."
-45,eco,"","44 percent of all seabird species, 22 percent of cetaceans, all sea turtle species and a growing list of fish species have been documented with plastic in or around their bodies."
-46,eco,"","In samples collected in Lake Erie, 85 percent of the plastic particles were smaller than two-tenths of an inch, and much of that was microscopic. Researchers found 1,500 and 1.7 million of these particles per square mile."
-47,eco,"",Virtually every piece of plastic that was ever made still exists in some shape or form (with the exception of the small amount that has been incinerated).
-48,eco,"",Plastic chemicals can be absorbed by the body—93 percent of Americans age six or older test positive for BPA (a plastic chemical).
-49,eco,"",Some of these compounds found in plastic have been found to alter hormones or have other potential human health effects.
-50,eco,"",Aluminium is the third most abundant element in the earth's crust and is the earth's second most used metal
-51,eco,"",90% of all drinks cans sold in the UK every year are made of aluminium
-52,eco,"",Recycling aluminium drink cans saves up to 95% of the energy needed to make aluminium from its raw materials
-53,eco,"",Making one aluminium drink can from raw materials uses the same amount of energy that it takes to recycle 20
-54,eco,"","Recycling 1 kg of aluminium saves 8kg of bauxite, 4kg of chemical products and 14 Kilowatts of electricity"
-55,eco,"",The energy saved by recycling 1 aluminium drink can is enough to run a television for three hours
-56,eco,"",75% of the aluminium ever made is still in productive use today
-57,eco,"",The UK produces over 9 billion drinks cans every year. 80% are made of aluminium
-58,eco,"","Every minute of every day, an average of 113,200 aluminium cans are recycled (source: thinkcans.net)"
-59,eco,"",The average household uses 3.2kg of aluminium cans a year - That's about 208 cans
-60,eco,"",Used aluminium drink cans can be recycled and back on supermarket shelves as new drink cans in as little as 60 days
-61,eco,"","An aluminium drink can contains four different aluminium alloys: the can body, can end, ring pull and the rivet attaching the ring pull"
-62,eco,"","On average, every person in the UK throws away their body weight in waste every 7 weeks"
-63,eco,"",Around 80% of our general waste in the wheelie bin could have been recycled
-64,eco,"","Every day, the UK sends over 80 million food and drinks cans to landfill"
-65,eco,"","If everyone in the UK recycled 10% more paper, we could save 5 million trees a year"
-66,eco,"","275,000 tonnes of plastic are used each year in the UK (around 15 million plastic bottles per day)"
-67,eco,"","Every Sunday nearly 90% off newspapers are thrown away in Britain, the equivalent of throwing half a million trees into landfill"
-68,eco,"",Recycling paper takes less energy and creates less population than creating it from raw materials
-69,eco,"",Plastic can take up to 500 years to fully decompose
-70,eco,"",1 glass bottle can save enough energy to power a computer for half an hour
-71,eco,"",1 tin can save enough energy to power a TV for 3 hours
-72,eco,"",1 recycled plastic bottle can save enough energy to power a bulb for 3 hours
-73,eco,"","Plastic bags, bottles and packaging that end up in oceans kill 1 million sea creatures every year"
-74,eco,"",If all cans in the UK were recycled we could get rid of 14 million dustbins
-75,eco,"",Glass is 100% recyclable and can be reused over and over again
-76,eco,"",5 out of every 6 glass bottles are thrown away
-77,eco,"","When a tonne of paper is recycled, 17 trees are saved"
-78,eco,"",Aluminium cans can be recycled and ready to use again in around 6 weeks
-79,eco,"","Just 1 wind turbine can generate enough electricity to power 1,400 homes."
-80,eco,"","Incredibly, as of 2017, China builds 2 wind turbines every hour!"
-81,eco,"","Renewable energy sources, like wind and solar power, now generate almost a third of the UK’s electricity."
-82,eco,"",Fossil fuels still get 4 times the subsidy of renewables from G20 nations.
-83,eco,"",Renewable Energy creates 5 times more jobs than fossil fuels.
-84,eco,"","Siemens built the first ever commercial offshore wind turbine 30 years ago. Its blades were 5 metres long, producing just 30 kilowatts of power. The latest model has 75 metre blades, producing 6 megawatts (25,000 times as much) – enough to power 6,000 homes."
-85,eco,"",Solar power isn’t just a daytime deal – power from the sun’s rays can be stored in salt and used at night too. A power plant in Spain soaks up sun by day and pumps out 7 hours of power to the surrounding area by night.
-86,eco,"","In 2016, California’s renewable energy firm SolarReserve commissioned the world’s first 24/7 solar power plant in the Nevada Desert; powering 75,000 homes for 3 hours a day."
-87,eco,"","In 2016, Portugal made history by running on renewable energy alone for 107 hours."
-88,eco,"","If taken advantage of to its fullest extent, sunlight beamed on the earth for 1 hour could meet world’s energy demands for an entire year!"
-89,eco,"",Solar power may account for the world's main source of power by 2050.
-90,eco,"",And Europe and North Africa could run on 100% renewable energy by 2050.
-91,eco,"",25% of the UK's population live in areas suitable for Geothermal District Heating using heat pumps.
-92,eco,"","Romans were the very first to use geothermal energy to heat their homes, with warm air moving under floors and inside walls."
-93,eco,"","A world record was set in 1990 when a solar-powered airplane flew across the United States in stages, using no fuel at all."
-94,eco,"","Tech giants, Google, Apple, and Facebook lead the pack in creating a ‘green internet’ – each are using increasingly green energy to power the web."
-95,eco,"","In 1921 Albert Einstein was awarded the Nobel Prize in Physics for his discovery of the photoelectric effect – and hence, solar panels."
-96,eco,"","Megabucks: the renewable energy industry is growing fast. By 2019, the global market is expected to to be worth $777.6 bn!"
-97,eco,"","The Itaipu Dam in Paraguay provides 76% of the country’s electricity and 17% of the electricity consumed in Brazil (displacing 67.5 million tonnes of CO2 every year). In Iceland, 100% of the energy is supplied by geothermal and hydropower sources!"
-98,eco,"","According to the WWF, the whole world could get all the power it needs from renewable resources by 2050, ending our reliance on fossil fuels and other depleting resources – but only if the right political, financial and societal decisions are made, and quickly."
-99,eco,"","In the US, electricity plants use more than 900 million short tons of coal to produce 40% of America’s electricity every year."
-100,eco,"",Petroleum oil provided 18% of energy for electricity in 1973 and less than 1% in 2011.
-101,appliance,light,stuff about logjt
+1,eco,,"The garbage in a landfill stays for a for about 30 years. "
+2,eco,,In 1995 over 200 of the world landfills were full.
+3,eco,,Each person throws away approximately four pounds of garbage every day.
+4,eco,,One bus carries as many people as 40 cars!
+5,eco,,More than 1/3 of all energy is used by people at home
+6,eco,,Most families throw away about 88 pounds of plastic every year
+7,eco,,"We each use about 12,000 gallons of water every year"
+8,eco,,1/3 of all water is used to flush the toilet.
+9,eco,,The 500 million automobiles on earth burn an average of 2 gallons of fuel a day.
+10,eco,,Each gallon of fuel releases 20 pounds of carbon dioxide into the air.
+11,eco,,Approximately 5 million tons of oil produced in the world each ear ends up in the ocean.
+12,eco,,The energy we save when we recycle one glass bottle is enough to light a traditional light bulb for four hours
+13,eco,,"For every 2000 pounds of paper (1 ton) recycled, we save 7,000 gallons of water free from chemicals."
+14,eco,,"Recycled paper requires 64% less energy than making paper from virgin wood pulp, and can save many trees"
+15,eco,,Every ton of paper that is recycled saves 17 trees
+16,eco,,The amount of wood and paper we throw away is enough to heat 50 million homes for 20 years
+17,eco,,Earth is 2/3 water. but all the fresh water streams only represent one hundredth of one percent.
+18,eco,,14 billion pounds of trash is dumped into the ocean every year
+19,eco,,It takes 90% less energy to recycle aluminum cans than to make new ones
+20,eco,,5 billion aluminum cans are used each year
+21,eco,,84 percent of all household waste can be recycled.
+22,eco,,Computers pose an environmental threat because much of the material that makes them up is hazardous. A typical monitor contains 4-5 pounds of lead.
+23,eco,,Each year billions of used batteries are thrown away in the United States. This constitutes 88% of the mercury and 54% of the cadmium deposited into our landfills
+24,eco,,Approximately only 10 percent of every landfill can be cleaned up.
+25,eco,,"Ivory comes from dead elephants, its best not to buy it."
+26,eco,,"Fur coats often come from endangered animals, it's best not to buy them."
+27,eco,,One gallon of motor oil can contaminate up to 2 million gallons of water. so dispose of properly!
+28,eco,,"In the Los Angeles area alone, 10 metric tons of plastic fragments—like grocery bags, straws and soda bottles—are carried into the Pacific Ocean every day."
+29,eco,,Over the last ten years we have produced more plastic than during the whole of the last century.
+30,eco,,"50 percent of the plastic we use, we use just once and throw away."
+31,eco,,Enough plastic is thrown away each year to circle the earth four times.
+32,eco,,We currently recover only five percent of the plastics we produce.
+33,eco,,The average American throws away approximately 185 pounds of plastic per year.
+34,eco,,Plastic accounts for around 10 percent of the total waste we generate.
+35,eco,,The production of plastic uses around eight percent of the world's oil production (bioplastics are not a good solution as they require food source crops).
+36,eco,,Americans throw away 35 billion plastic water bottles every year (source: Brita)
+37,eco,,Plastic in the ocean breaks down into such small segments that pieces of plastic from a one liter bottle could end up on every mile of beach throughout the world.
+38,eco,,Annually approximately 500 billion plastic bags are used worldwide. More than one million bags are used every minute.
+39,eco,,46 percent of plastics float (EPA 2006) and it can drift for years before eventually concentrating in the ocean gyres.
+40,eco,,"It takes 500-1,000 years for plastic to degrade."
+41,eco,,Billions of pounds of plastic can be found in swirling convergences in the oceans making up about 40 percent of the world's ocean surfaces. 80 percent of pollution enters the ocean from the land.
+42,eco,,"The Great Pacific Garbage Patch is located in the North Pacific Gyre off the coast of California and is the largest ocean garbage site in the world. This floating mass of plastic is twice the size of Texas, with plastic pieces outnumbering sea life six to one."
+43,eco,,"Plastic constitutes approximately 90 percent of all trash floating on the ocean's surface, with 46,000 pieces of plastic per square mile."
+44,eco,,"One million sea birds and 100,000 marine mammals are killed annually from plastic in our oceans."
+45,eco,,"44 percent of all seabird species, 22 percent of cetaceans, all sea turtle species and a growing list of fish species have been documented with plastic in or around their bodies."
+46,eco,,"In samples collected in Lake Erie, 85 percent of the plastic particles were smaller than two-tenths of an inch, and much of that was microscopic. Researchers found 1,500 and 1.7 million of these particles per square mile."
+47,eco,,Virtually every piece of plastic that was ever made still exists in some shape or form (with the exception of the small amount that has been incinerated).
+48,eco,,Plastic chemicals can be absorbed by the body—93 percent of Americans age six or older test positive for BPA (a plastic chemical).
+49,eco,,Some of these compounds found in plastic have been found to alter hormones or have other potential human health effects.
+50,eco,,Aluminium is the third most abundant element in the earth's crust and is the earth's second most used metal
+51,eco,,90% of all drinks cans sold in the UK every year are made of aluminium
+52,eco,,Recycling aluminium drink cans saves up to 95% of the energy needed to make aluminium from its raw materials
+53,eco,,Making one aluminium drink can from raw materials uses the same amount of energy that it takes to recycle 20
+54,eco,,"Recycling 1 kg of aluminium saves 8kg of bauxite, 4kg of chemical products and 14 Kilowatts of electricity"
+55,eco,,The energy saved by recycling 1 aluminium drink can is enough to run a television for three hours
+56,eco,,75% of the aluminium ever made is still in productive use today
+57,eco,,The UK produces over 9 billion drinks cans every year. 80% are made of aluminium
+58,eco,,"Every minute of every day, an average of 113,200 aluminium cans are recycled (source: thinkcans.net)"
+59,eco,,The average household uses 3.2kg of aluminium cans a year - That's about 208 cans
+60,eco,,Used aluminium drink cans can be recycled and back on supermarket shelves as new drink cans in as little as 60 days
+61,eco,,"An aluminium drink can contains four different aluminium alloys: the can body, can end, ring pull and the rivet attaching the ring pull"
+62,eco,,"On average, every person in the UK throws away their body weight in waste every 7 weeks"
+63,eco,,Around 80% of our general waste in the wheelie bin could have been recycled
+64,eco,,"Every day, the UK sends over 80 million food and drinks cans to landfill"
+65,eco,,"If everyone in the UK recycled 10% more paper, we could save 5 million trees a year"
+66,eco,,"275,000 tonnes of plastic are used each year in the UK (around 15 million plastic bottles per day)"
+67,eco,,"Every Sunday nearly 90% off newspapers are thrown away in Britain, the equivalent of throwing half a million trees into landfill"
+68,eco,,Recycling paper takes less energy and creates less population than creating it from raw materials
+69,eco,,Plastic can take up to 500 years to fully decompose
+70,eco,,1 glass bottle can save enough energy to power a computer for half an hour
+71,eco,,1 tin can save enough energy to power a TV for 3 hours
+72,eco,,1 recycled plastic bottle can save enough energy to power a bulb for 3 hours
+73,eco,,"Plastic bags, bottles and packaging that end up in oceans kill 1 million sea creatures every year"
+74,eco,,If all cans in the UK were recycled we could get rid of 14 million dustbins
+75,eco,,Glass is 100% recyclable and can be reused over and over again
+76,eco,,5 out of every 6 glass bottles are thrown away
+77,eco,,"When a tonne of paper is recycled, 17 trees are saved"
+78,eco,,Aluminium cans can be recycled and ready to use again in around 6 weeks
+79,eco,,"Just 1 wind turbine can generate enough electricity to power 1,400 homes."
+80,eco,,"Incredibly, as of 2017, China builds 2 wind turbines every hour!"
+81,eco,,"Renewable energy sources, like wind and solar power, now generate almost a third of the UK’s electricity."
+82,eco,,Fossil fuels still get 4 times the subsidy of renewables from G20 nations.
+83,eco,,Renewable Energy creates 5 times more jobs than fossil fuels.
+84,eco,,"Siemens built the first ever commercial offshore wind turbine 30 years ago. Its blades were 5 metres long, producing just 30 kilowatts of power. The latest model has 75 metre blades, producing 6 megawatts (25,000 times as much) – enough to power 6,000 homes."
+85,eco,,Solar power isn’t just a daytime deal – power from the sun’s rays can be stored in salt and used at night too. A power plant in Spain soaks up sun by day and pumps out 7 hours of power to the surrounding area by night.
+86,eco,,"In 2016, California’s renewable energy firm SolarReserve commissioned the world’s first 24/7 solar power plant in the Nevada Desert; powering 75,000 homes for 3 hours a day."
+87,eco,,"In 2016, Portugal made history by running on renewable energy alone for 107 hours."
+88,eco,,"If taken advantage of to its fullest extent, sunlight beamed on the earth for 1 hour could meet world’s energy demands for an entire year!"
+89,eco,,Solar power may account for the world's main source of power by 2050.
+90,eco,,And Europe and North Africa could run on 100% renewable energy by 2050.
+91,eco,,25% of the UK's population live in areas suitable for Geothermal District Heating using heat pumps.
+92,eco,,"Romans were the very first to use geothermal energy to heat their homes, with warm air moving under floors and inside walls."
+93,eco,,"A world record was set in 1990 when a solar-powered airplane flew across the United States in stages, using no fuel at all."
+94,eco,,"Tech giants, Google, Apple, and Facebook lead the pack in creating a ‘green internet’ – each are using increasingly green energy to power the web."
+95,eco,,"In 1921 Albert Einstein was awarded the Nobel Prize in Physics for his discovery of the photoelectric effect – and hence, solar panels."
+96,eco,,"Megabucks: the renewable energy industry is growing fast. By 2019, the global market is expected to to be worth $777.6 bn!"
+97,eco,,"The Itaipu Dam in Paraguay provides 76% of the country’s electricity and 17% of the electricity consumed in Brazil (displacing 67.5 million tonnes of CO2 every year). In Iceland, 100% of the energy is supplied by geothermal and hydropower sources!"
+98,eco,,"According to the WWF, the whole world could get all the power it needs from renewable resources by 2050, ending our reliance on fossil fuels and other depleting resources – but only if the right political, financial and societal decisions are made, and quickly."
+99,eco,,"In the US, electricity plants use more than 900 million short tons of coal to produce 40% of America’s electricity every year."
+100,eco,,Petroleum oil provided 18% of energy for electricity in 1973 and less than 1% in 2011.
+101,appliance,roller shades,"About 30% of a home's heating energy is lost through windows. In cooling seasons, about 76% of sunlight that falls on standard double-pane windows enters to become heat."
+102,appliance,roller shades,"Cellular shades can reduce the transfer of heat and cold, they also reduce noise. A conventional one can reduce heat loss by about 25%."
+103,appliance,roller shades,"When paired with smart lighting, smart rollar shades can help maximize the amount of daylight in your home to cut down on electricity usage. For example, opening the blinds can trigger smart lighting to turn off, and vice versa."
+104,appliance,roller shades,"Connecting motorized roller shades to a smart home hub can help minimize the amount of energy your HVAC (Heat, Air Ventilation, and Cooling) system uses by allowing the blinds to react independently to readings from temperature and sunlight sensors also connected to the smart hub. Consequently, the blinds will actually know when to close during the hottest part of the day to reduce HVAC usage or whether to open during a sunny day in the winter to allow the sun to heat a room naturally."
+105,appliance,roller shades,"Smart thermostats have a trove of data to use to determine whether opening or closing smart roller shades will help reduce energy use, such as what time of day it is, what the weather is like outside, and what the temperature is in the home."
+106,appliance,light, "The LED bulbs have the longest lifetime and are recyclable. "
+107,appliance,light, "It is better to choose yellow LED bulbs rather than blue ones. Those can create vision issues and macular degeneration."
+108,appliance,light, "The LED bulbs consume much less watts than halogen or incandescent ones, but they are more expensive."
+109,appliance,light, "The LED bulbs have an excellent light output. The power consumed is only 9 Watts for a restored power of 60 Watts."
+110,appliance,light, "The low consumption bulbs are are quite fragile and take much longer to get on compared to other bulbs."
+111,appliance,light, "For the low consumption bulbs, there are risks of mercury poisoning if it's broken and they cannot be recycled."
+112,appliance,light, "The low consumption bulbs live a very long time, from 6000 hours to 15000 hours."
+113,appliance,light, "The low consumption bulbs have also a good light output, whihc is 70 lm/W, or 5 times bigger than a traditional incandescent bulb."
+114,appliance,light, "The halogen lamps have a low light output, between 20 to 40 lm/W."
+115,appliance,light, "The types of bulb which are the lowest light output are the incandescents and the halogens. They're are heating rapidly."
+116,appliance,light, "The most fragile bulbs are the low consumptions and the incandescents."
+117,appliance,light, "The most expensive bulb is the LED one, but it also has the best light output and lives longer than the other bulbs."
+118,appliance,heater, "A better isolated house consumes to 30 times less than a bad isolated one."
+119,appliance,heater, "Using thermostat devices can make you save at least 25% of your heating bill."
+120,appliance,heater, "A heating programmer allows up to 15% energy savings for an investment of between 80 and 300 €."
+121,appliance,heater, "Hybrid solar boiler costs at least 12000euros to install but will allow you to save more than 3 times what you spend with a traditional gaz heater."
+122,appliance,heater, "42% of the population has a traditional gaz boiler. It can manage both the heater and the hot water at the same time. "
+123,appliance,heater, "Electrical heating is not expensive to buy and is easy to install but it is the most costly energy to produce and gives an inhomogeneous heat distribution."
+
