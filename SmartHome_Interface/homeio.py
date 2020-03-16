@@ -13,6 +13,7 @@ from globals import *
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["shome"]
 mycol = mydb["homeio"]
+mycolvar = mydb["homeiovari"]
 memcol = mydb["homeiomem"]
 
 
@@ -61,6 +62,14 @@ while(1):
 			appl = MemoryMap.Instance.GetBit(int(temp['address']), MemoryType.Output)
 			appl.Value = True
 			MemoryMap.Instance.Update()
+	datavar = list(mycolvar.find().sort("address"))
+	for i in range(len(datavar)):
+		temp = datavar[i]
+		appl = MemoryMap.Instance.GetFloat(int(temp['address']), MemoryType.Output)
+		appl.Value = temp['value']
+		MemoryMap.Instance.Update()
+		# print(temp['value'])
+		# time.sleep(1)
 	if elapsed_time > 10:
 			start = time.time()
 			for x in memoryAdd:
