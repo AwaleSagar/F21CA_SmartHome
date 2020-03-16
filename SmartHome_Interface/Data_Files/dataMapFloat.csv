@@ -1,0 +1,38 @@
+﻿address,zone,name,value
+0,A,Lights (Analogue),0
+1,A,Heater (Analogue),0
+11,B,Lights 1 (Analogue),0
+12,B,Lights 2 (Analogue),0
+22,C,Lights (Analogue),0
+32,D,Lights 1 (Analogue),0
+33,D,Lights 2 (Analogue),0
+34,D,Heater (Analogue),0
+44,E,Lights (Analogue),0
+45,E,Heater (Analogue),0
+55,F,Lights 1 (Analogue),0
+56,F,Lights 2 (Analogue),0
+66,G,Lights (Analogue),0
+67,G,Heater 1 (Analogue),0
+68,G,Heater 2 (Analogue),0
+78,H,Lights (Analogue),0
+79,H,Heater (Analogue),0
+89,I,Lights 1 (Analogue),0
+90,I,Lights 2 (Analogue),0
+91,I,Heater (Analogue),0
+101,J,Lights (Analogue),0
+102,J,Heater (Analogue),0
+112,K,Lights (Analogue),0
+113,K,Heater (Analogue),0
+123,L,Lights (Analogue),0
+124,L,Heater (Analogue),0
+134,M,Lights (Analogue),0
+135,M,Heater (Analogue),0
+145,N,Lights 1 (Analogue),0
+146,N,Lights 2 (Analogue),0
+147,N,Lights 3 (Analogue),0
+148,N,Heater (Analogue),0
+158,O,Lights Poarch 1 (Analogue),0
+159,O,Lights Poarch 2 (Analogue),0
+160,O,Lights Pool (Analogue),0
+161,O,Lights Garden (Analogue),0
+162,O,Lights Entrance (Analogue),0
