@@ -144,6 +144,7 @@
 - whats up
 - yo
 - yoo
+- yosh
 
 
 ## intent:affirm
