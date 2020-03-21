@@ -606,11 +606,15 @@
 - give me an [eco-fact](info) about the [oven](appliance)
 - give me an [eco-fact](info) about the [light](appliance)
 - give me an [eco-fact](info) about the [heating](appliance)
+- give me an [eco-fact](info) about the [heater](appliance)
+- give me an [eco-fact](info) about the [roller shades](appliance)
 - give me an [eco-fact](info) about the [tv](appliance)
 - i'd like to know an [eco-fact](info) about the [oven](appliance)
 - i'd like to know an [eco-fact](info) about the [light](appliance)
 - i'd like to know an [eco-fact](info) about the [heating](appliance)
 - i'd like to know an [eco-fact](info) about the [tv](appliance)
+- i'd like to know an [eco-fact](info) about the [roller shades](appliance)
+- i'd like to know an [eco-fact](info) about the [heater](appliance)
 - tell me how to [recycle](info)
 - tell me how to [save](info) [gas](info)
 - tell me how to [save](info) [water](info)
@@ -621,7 +625,9 @@
 - in what ways can i [save](info) [gas](info)
 - in what ways can i [save](info) [water](info)
 - give me an [eco-fact](info) about the [oven](appliance)
+- give me an [eco-fact](info) about the [roller shades](appliance)
 - give me an [eco-fact](info) about [light](appliance)
+- give me an [eco-fact](info) about [heater](appliance)
 - how do i [save](info) [gas](info)
 - how can i [save](info) [gas](info)
 - how do i [save](info) [water](info)
@@ -855,6 +861,7 @@ data/lookups/appliance.txt
 - shutter
 - curtain
 - jalousie
+- roller shades
 
 ## synonym:light
 - lights
