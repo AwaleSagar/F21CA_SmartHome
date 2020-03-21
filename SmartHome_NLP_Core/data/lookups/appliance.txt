@@ -85,3 +85,9 @@ lamps
 bulb
 tubelight 
 torch
+roller shades
+roller
+shades
+shade
+heater
+light
