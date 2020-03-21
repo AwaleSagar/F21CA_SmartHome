@@ -141,10 +141,17 @@ class ActionLanguageProcessor():
     def _eco_friendly_fact(self, interpretation):
         collection = self.db.homeiofact
 
-        answer = collection.aggregate([{ "$sample": { "size": 1 } }])
-
+        #answer = collection.aggregate([{ "$sample": { "size": 1 } }])
+        for entity in interpretation['entities'] :
+            if entity['entity'] == "appliance" :
+                appliance = entity['value']
+                answer = collection.aggregate([{ "$match": { "Things": appliance } },{ "$sample": { "size": 1 } }])
+                fact = [tmp for tmp in answer][0]
+                return fact['Fact'] 
+        
+            
+        answer = collection.aggregate([{ "$match": { "Fact Category": "eco" } },{ "$sample": { "size": 1 } }])
         fact = [tmp for tmp in answer][0]
-        #answer.parse()
         return fact['Fact'] 
         
     def _take_action(self, interpretation):
