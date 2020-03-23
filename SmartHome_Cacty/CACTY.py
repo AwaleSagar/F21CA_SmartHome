@@ -216,6 +216,7 @@ class MainWindow():
         r3 = sr.Recognizer()
         
         with sr.Microphone(device_index=0) as source:
+        #with sr.Microphone(device_index=0) as source:
             #print('[search edureka : search youtube]')
             print('Want to speak to Alana?')
             try:
