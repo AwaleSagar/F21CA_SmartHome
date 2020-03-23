@@ -36,14 +36,20 @@ from rasa.nlu.model import Interpreter
 
 # model path
 #model = "./NLU/models/nlu-20200214-113529/nlu"
-model = "./NLU/models/nlu-20200216-142039/nlu"
+#model = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
+model = "./NLU/models/nlu-20200323-175228/nlu"
+
+#model = "./NLU/models/20200310-190259/nlu"
+
 # loading the model from one directory or zip file
-interpreter = Interpreter.load(model)
+#interpreter = Interpreter.load(model)
 
 #------------------FACT- NLG ----------------------------------------------------------
 
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:11014/?compressors=disabled&gssapiServiceName=mongodb"
-MONGODB_URL= "mongodb://0.tcp.ngrok.io:14723/?compressors=disabled&gssapiServiceName=mongodb"
+#MONGODB_URL= "mongodb://0.tcp.ngrok.io:14723/?compressors=disabled&gssapiServiceName=mongodb"
+MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
+
 MODEL_ADDR = model
 
 #---------------------------------------------------------------------------------
@@ -91,8 +97,9 @@ class EcoBot(Bot):
                 #interpretation = interpreter.parse(user_utterance)
                 #self.response.result = interpretation['intent']['name']
 
-
-        alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
+	
+        #alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
+        alp = ActionLanguageProcessor(mongodb_url="mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb", model_file=MODEL_ADDR)
         self.response.result = alp.analyse_utterance(user_utterance)
         
         

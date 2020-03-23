@@ -9,6 +9,7 @@ import datetime
 import requests
 from word2number import w2n
 import pandas as pd
+
 from pprint import pprint
 # import sklearn
 
@@ -22,11 +23,15 @@ from rasa.nlu.model import Interpreter
 # run 'pip install pymongo' to install this lib
 from pymongo import MongoClient
 
-MODEL_ADDR = "./NLU/models/20200310-190259/nlu"
+#MODEL_ADDR = "./NLU/models/nlu-20200216-142039/nlu"
+#MODEL_ADDR = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
+MODEL_ADDR = "./NLU/models/nlu-20200323-175228/nlu"
+
 # connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
 #MONGODB_URL = "mongodb://0.tcp.ngrok.io:10277"
-MONGODB_URL = "mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb"
-
+#MONGODB_URL = "mongodb://127.0.0.1:18239/?compressors=disabled&gssapiServiceName=mongodb"
+MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
+#MONGODB_URL= "mongodb://b64736ba.ngrok.io/"
 ## WAGI API PARAMS
 API_KEY = "dc7cf06b49047ee83091c9c350abcf80db6fbd43"
 API_URL = f"https://api.waqi.info/feed/edinburgh/?token={API_KEY}"
@@ -81,11 +86,14 @@ class ActionLanguageProcessor():
     
     def __init__(self, mongodb_url, model_file):
         self.DB_CLIENT = MongoClient(mongodb_url)
+        #self.DB_CLIENT = MongoClient(mongodb_url, serverSelectionTimeoutMS=100)
+
         # I created a database called simple_appliances_db
         self.db = self.DB_CLIENT.shome
         # loading the model from one directory or zip file
         self.interpreter = Interpreter.load(model_file)
-        
+        self.welcome = ["Hello, nice to meet you! How can I help you?","Welcome to Alana Eco bot application. Can I help you?","Hi! How are you?"]
+
         self.action_device_mapping = {
                         "light" : {
                                 "actions":["turn on", "turn off"],
@@ -96,7 +104,7 @@ class ActionLanguageProcessor():
                                   "collection": self.db.homeio
                                   }
                           }
-
+        print(mongodb_url)
     def __str__(self):
         return str(self.action_device_mapping)
     
@@ -118,9 +126,8 @@ class ActionLanguageProcessor():
                 key = word
                 
         return key
-            
-    
-    def analyse_utterance(self, utterance="can you give me an eco-friendly fact"):
+
+    def analyse_utterance(self, utterance="can you give factsme an eco-friendly fact"):
         # parsing the utterance
         interpretation = self.interpreter.parse(utterance)
         
@@ -137,9 +144,38 @@ class ActionLanguageProcessor():
         elif interpretation["intent"]["name"] == "get_info_energy":
             return self._get_energy_consumption(interpretation)
 
+    def _welcome_(self, interpretation):
+        return "a"#random.choice(self.welcome)
+    def _affirm_(self, interpretation):
+        return "b"#random.choice(self.welcome)
+    def _deny_(self, interpretation):
+        return "c"#random.choice(self.welcome)
+    def _nicetomeeyou_(self, interpretation):
+        return "d"#random.choice(self.welcome)
+    def _react_positive_(self, interpretation):
+        return "e"#random.choice(self.welcome)
+    def _thanking_(self, interpretation):
+        return "f"#random.choice(self.welcome)
+    def _goodbye_(self, interpretation):
+        return "j"#random.choice(self.welcome)
+
+    def _take_action_duration_(self, interpretation):
+        return "h"
+    def _take_action_variable_(self, interpretation):
+        return "k"
+    def _inform_(self, interpretation):
+        return "l"
+    def _repair_inform_(self, interpretation):
+        return "m"
+    def _air_quality_forecast_(self, interpretation):
+        return "n"
+    def _sos_(self, interpretation):
+        return "o"
+
+
         
     def _eco_friendly_fact(self, interpretation):
-       collection = self.db.homeiofact
+        collection = self.db.homeiofact
 
         #answer = collection.aggregate([{ "$sample": { "size": 1 } }])
         for entity in interpretation['entities'] :
@@ -175,22 +211,38 @@ class ActionLanguageProcessor():
                 
         location = ActionLanguageProcessor._maximumStrSimilarity(location,LOCATION_TO_ZONE.keys())    
         appliance = ActionLanguageProcessor._maximumStrSimilarity(appliance,ENTITY_TO_DATABASE_NAME.keys())    
-        
 
         if location != None and appliance != None and action != None:
-            
+
             if (appliance.lower() in self.action_device_mapping.keys() #We check the appliance is managed (i.e in ACTION_DEVICE_MAPPING)
-            and action in self.action_device_mapping[appliance]["actions"]): # We check the location exists
+            and action.lower() in self.action_device_mapping[appliance]["actions"]): # We check the location exists
                 #CODE FOR DB QUERY
                 collection = self.action_device_mapping[appliance.lower()]["collection"] 
+
+                #list_of_devices = collection.find()
                 
+                
+                list_of_devices = collection.find({
+                        "zone": LOCATION_TO_ZONE[location.lower()],#Everything that matches this zone requirements ,
+                        "appliance": {'$regex':f'^{ENTITY_TO_DATABASE_NAME[appliance]}', "$options":"-i"}
+                })
+                
+                """
                 list_of_devices = collection.find({
                         "zone": LOCATION_TO_ZONE[location.lower()],#Everything that matches this zone requirements ,
                         "appliance": {'$regex':f'^{ENTITY_TO_DATABASE_NAME[appliance]}$'}
                 })
-            
+                
+                """
+
+
+                #print(list_of_devices)
                 for device in list_of_devices:
+                    """
+                    print("--------------------")
                     print(device)
+                    print("--------------------")
+                    """
                     collection.update({
                             "address": device["address"]#The device that matches this address
                             },{
@@ -328,7 +380,8 @@ class ActionLanguageProcessor():
             return energy_con["value"]
     
 if __name__ == "__main__":
-    utterance = "what is the energy consumption of last day"
+    #utterance = "turn on the light in the kitchen"
+    utterance = "turn on the light in the kitchen"
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
     
