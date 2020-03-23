@@ -25,7 +25,7 @@ from pymongo import MongoClient
 
 #MODEL_ADDR = "./NLU/models/nlu-20200216-142039/nlu"
 #MODEL_ADDR = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
-MODEL_ADDR = "./NLU/models/nlu-20200323-175228/nlu"
+MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
 
 # connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
 #MONGODB_URL = "mongodb://0.tcp.ngrok.io:10277"
@@ -211,7 +211,8 @@ class ActionLanguageProcessor():
                 
         location = ActionLanguageProcessor._maximumStrSimilarity(location,LOCATION_TO_ZONE.keys())    
         appliance = ActionLanguageProcessor._maximumStrSimilarity(appliance,ENTITY_TO_DATABASE_NAME.keys())    
-
+        print(location)
+        print(appliance)
         if location != None and appliance != None and action != None:
 
             if (appliance.lower() in self.action_device_mapping.keys() #We check the appliance is managed (i.e in ACTION_DEVICE_MAPPING)
@@ -381,7 +382,8 @@ class ActionLanguageProcessor():
     
 if __name__ == "__main__":
     #utterance = "turn on the light in the kitchen"
-    utterance = "turn on the light in the kitchen"
+    #utterance = "turn on the light in living room"
+    utterance = "give me an eco fact"
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
     
