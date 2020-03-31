@@ -4,16 +4,17 @@ Created on Sun Feb 16 15:18:46 2020
 
 @author: dacca
 """
+# LIB IMPORTS
 import tensorflow as tf
 import datetime
 import requests
-from word2number import w2n
 import pandas as pd
-
 from pprint import pprint
-# import sklearn
+import os
+import numpy as np
 
-# print('The scikit-learn version is {}.'.format(sklearn.__version__))
+# OWN FILES IMPORTS
+from utils import get_date_from_interpretation
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
@@ -36,13 +37,18 @@ MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiService
 API_KEY = "dc7cf06b49047ee83091c9c350abcf80db6fbd43"
 API_URL = f"https://api.waqi.info/feed/edinburgh/?token={API_KEY}"
 
-## DATASET PARAMS
-DATASET_FILE_NAME = "edi_air_quality.csv"
-DATASET_PATH = f"NLU/data/{DATASET_FILE_NAME}"
+## DATASETs PARAMS
+DATASETS_FOLDER = os.path.join(os.getcwd(),"../../../SmartHome_Interface/Data_Files")
+
+AIR_QUALITY_DATASET_FILE_NAME = "air_quality/edi_air_quality.csv"
+CONSUMPTION_DATASET_FILE_NAME = "energy_consumption/energy_consumption.pkl"
+TIMESTAMPS_DATASET_FILE_NAME = "energy_consumption/timestamps.csv"
+
+AIR_QUALITY_DATASET = pd.read_csv(os.path.join(DATASETS_FOLDER, AIR_QUALITY_DATASET_FILE_NAME))
+CONSUMPTION_DATASET = pd.read_pickle(os.path.join(DATASETS_FOLDER, CONSUMPTION_DATASET_FILE_NAME))
+TIMESTAMPS_DATASET = pd.read_csv(os.path.join(DATASETS_FOLDER, TIMESTAMPS_DATASET_FILE_NAME))
 
 THRESHOLD = 0.5
-
-dataset = pd.read_csv(DATASET_PATH)
 
 LOCATION_TO_ZONE = {"living" : "A", # living room
                     "washroom" : "B", # washroom
@@ -142,7 +148,7 @@ class ActionLanguageProcessor():
         elif interpretation["intent"]["name"] == "air_quality_historical":
             return self._get_historical_air_quality(interpretation)
         elif interpretation["intent"]["name"] == "get_info_energy":
-            return self._get_energy_consumption(interpretation)
+            return self._get_energy_consumption_timespan(interpretation)
 
     def _welcome_(self, interpretation):
         return "a"#random.choice(self.welcome)
@@ -341,7 +347,7 @@ class ActionLanguageProcessor():
 
         d_down = d_up - datetime.timedelta(days=counter*time_measure_factor)
 
-        rows_of_dataset = dataset[dataset.apply(lambda x: row_is_between_dates(x, low_date = d_down, up_date = d_up), axis=1)]
+        rows_of_dataset = AIR_QUALITY_DATASET[AIR_QUALITY_DATASET.apply(lambda x: row_is_between_dates(x, low_date = d_down, up_date = d_up), axis=1)]
 
         print(rows_of_dataset)
 
@@ -351,7 +357,7 @@ class ActionLanguageProcessor():
 
         """
 
-        for column in dataset.columns:
+        for column in AIR_QUALITY_DATASET.columns:
             if column != "date" :
                 print(rows_of_dataset[column])
                 returned_response += f"""
@@ -378,10 +384,32 @@ class ActionLanguageProcessor():
             })
         
             return energy_con["value"]
+
+    def _get_energy_consumption_timespan(self, interpretation):
+        """
+            Retrieves statistics about the energy consumption in a specific time span
+        """
+        d_down, d_up = get_date_from_interpretation(interpretation)
+        
+        timestamps = TIMESTAMPS_DATASET["Timestamps"].to_numpy()
+
+        timestamps_conditioned = np.array( #converts timestamps in booleans if 
+            [
+                datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
+            ]
+        )
+
+        arr = CONSUMPTION_DATASET.iloc[0]["values"]
+
+        extracted_cons = np.extract(timestamps_conditioned,arr)
+
+        #print(extracted_cons)
+
+        return f"You consumed a total of {np.sum(extracted_cons)}"
     
 if __name__ == "__main__":
     #utterance = "turn on the light in the kitchen"
-    utterance = "turn on the light in the kitchen"
+    utterance = "what is my consumption of last two weeks"
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
     
