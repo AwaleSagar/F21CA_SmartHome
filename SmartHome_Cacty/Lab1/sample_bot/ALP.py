@@ -26,7 +26,7 @@ from pymongo import MongoClient
 
 #MODEL_ADDR = "./NLU/models/nlu-20200216-142039/nlu"
 #MODEL_ADDR = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
-MODEL_ADDR = "./NLU/models/nlu-20200323-175228/nlu"
+MODEL_ADDR = "./NLU/models/20200331-192950/nlu"
 
 # connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
 #MONGODB_URL = "mongodb://0.tcp.ngrok.io:10277"
@@ -388,28 +388,76 @@ class ActionLanguageProcessor():
     def _get_energy_consumption_timespan(self, interpretation):
         """
             Retrieves statistics about the energy consumption in a specific time span
-        """
-        d_down, d_up = get_date_from_interpretation(interpretation)
-        
+        """         
+
+        appliance = None
+
+        d_down, d_up = get_date_from_interpretation(interpretation)     
+
         timestamps = TIMESTAMPS_DATASET["Timestamps"].to_numpy()
 
-        timestamps_conditioned = np.array( #converts timestamps in booleans if 
-            [
-                datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
-            ]
-        )
+        if (appliance == None):
+            
+            #When no appliance is queried and a general house-wise energy consumption report is asked        
+            arr = CONSUMPTION_DATASET.iloc[0]["values"]
 
-        arr = CONSUMPTION_DATASET.iloc[0]["values"]
+            
 
-        extracted_cons = np.extract(timestamps_conditioned,arr)
+            #Finds the timestamp between the limit dates when querying past consumption
+            timestamps_conditioned = np.array( #converts timestamps in booleans if 
+                [
+                    datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
+                ]
+            )
 
-        #print(extracted_cons)
+            extracted_cons = np.extract(timestamps_conditioned,arr)
 
-        return f"You consumed a total of {np.sum(extracted_cons)}"
+            return f"You consumed a total of {np.sum(extracted_cons)} Wh"
     
+        elif (appliance.lower()[:6] == "light"):
+
+            # We retrieve multiple set of registered values as an array of array: [
+            #   [values of light 1], [values of light 2] ...
+            # ]
+            arrs = CONSUMPTION_DATASET[CONSUMPTION_DATASET["appliance"].str.contains('light',case=False)]["values"].to_numpy()
+
+            #Finds the timestamp between the limit dates when querying past consumption
+            timestamps_conditioned = np.array( #converts timestamps in booleans if 
+                [
+                    datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
+                ]
+            )
+
+            total = 0
+            for arr in arrs:
+                extracted_cons = np.extract(timestamps_conditioned,arr)
+                total += np.sum(extracted_cons)
+
+            return f"Your lights consumed a total of {total} Wh"
+
+        elif (appliance.lower()[:4] == "heat"):
+
+            arrs = CONSUMPTION_DATASET[CONSUMPTION_DATASET["appliance"].str.contains('heat',case=False)]["values"].to_numpy()
+
+            #Finds the timestamp between the limit dates when querying past consumption
+            timestamps_conditioned = np.array( #converts timestamps in booleans if 
+                [
+                    datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
+                ]
+            )
+
+            total = 0
+            for arr in arrs:
+                extracted_cons = np.extract(timestamps_conditioned,arr)
+                total += np.sum(extracted_cons)
+
+            return f"Your heaters consumed a total of {total} Wh "
+
+        return f"Query misunderstood, please repeat"
+
 if __name__ == "__main__":
     #utterance = "turn on the light in the kitchen"
-    utterance = "what is my consumption of last two weeks"
+    utterance = "what is my consumption of heating these last two weeks"
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
     
