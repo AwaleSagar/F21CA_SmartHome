@@ -14,7 +14,7 @@ import os
 import numpy as np
 
 # OWN FILES IMPORTS
-from utils import get_date_from_interpretation
+from useful_functions import get_date_from_interpretation
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
@@ -133,7 +133,7 @@ class ActionLanguageProcessor():
                 
         return key
 
-    def analyse_utterance(self, utterance="can you give factsme an eco-friendly fact"):
+    def analyse_utterance(self, utterance="can you give me an eco-friendly fact"):
         # parsing the utterance
         interpretation = self.interpreter.parse(utterance)
         
@@ -349,8 +349,6 @@ class ActionLanguageProcessor():
 
         rows_of_dataset = AIR_QUALITY_DATASET[AIR_QUALITY_DATASET.apply(lambda x: row_is_between_dates(x, low_date = d_down, up_date = d_up), axis=1)]
 
-        print(rows_of_dataset)
-
         returned_response+=f"""
         \n
         Air quality of the last {counter*time_measure_factor} days was like this:
@@ -392,16 +390,19 @@ class ActionLanguageProcessor():
 
         appliance = None
 
-        d_down, d_up = get_date_from_interpretation(interpretation)     
+        for entity in interpretation["entities"]:
+            if entity["entity"] == "appliance":
+                appliance = entity["value"]
+
+        d_down, d_up, day_count = get_date_from_interpretation(interpretation)     
+        plural = "s" if day_count > 1 else ""
 
         timestamps = TIMESTAMPS_DATASET["Timestamps"].to_numpy()
 
         if (appliance == None):
             
             #When no appliance is queried and a general house-wise energy consumption report is asked        
-            arr = CONSUMPTION_DATASET.iloc[0]["values"]
-
-            
+            arrs = CONSUMPTION_DATASET["values"].to_numpy()
 
             #Finds the timestamp between the limit dates when querying past consumption
             timestamps_conditioned = np.array( #converts timestamps in booleans if 
@@ -410,9 +411,16 @@ class ActionLanguageProcessor():
                 ]
             )
 
+            total = 0
+            for arr in arrs:
+                extracted_cons = np.extract(timestamps_conditioned,arr)
+                total += np.sum(extracted_cons)
+
             extracted_cons = np.extract(timestamps_conditioned,arr)
 
-            return f"You consumed a total of {np.sum(extracted_cons)} Wh"
+            total = np.sum(extracted_cons)
+
+            subject = "You"
     
         elif (appliance.lower()[:6] == "light"):
 
@@ -433,7 +441,7 @@ class ActionLanguageProcessor():
                 extracted_cons = np.extract(timestamps_conditioned,arr)
                 total += np.sum(extracted_cons)
 
-            return f"Your lights consumed a total of {total} Wh"
+            subject = "Your lights"
 
         elif (appliance.lower()[:4] == "heat"):
 
@@ -451,13 +459,18 @@ class ActionLanguageProcessor():
                 extracted_cons = np.extract(timestamps_conditioned,arr)
                 total += np.sum(extracted_cons)
 
-            return f"Your heaters consumed a total of {total} Wh "
+            subject = "Your heaters"
+            
 
-        return f"Query misunderstood, please repeat"
+        else:
+            return f"Query misunderstood, please repeat"
+
+
+        return f"{subject} consumed a total of {round(total, ndigits=2)} Wh over {day_count} day{plural}"
 
 if __name__ == "__main__":
     #utterance = "turn on the light in the kitchen"
-    utterance = "what is my consumption of heating these last two weeks"
+    utterance = "what is my consumption these last two weeks"
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
     
