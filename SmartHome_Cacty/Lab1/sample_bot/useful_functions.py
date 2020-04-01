@@ -45,7 +45,7 @@ def get_date_from_interpretation(interpretation):
             counter = w2n.word_to_num(number)
     elif (number is not None):
         try:
-            counter = number
+            counter = int(number)
         except:
             counter = w2n.word_to_num(number)
     # e.g one month ago (we then check the date one month ago and move 7 days ahead)
@@ -59,4 +59,4 @@ def get_date_from_interpretation(interpretation):
 
     d_down = d_up - datetime.timedelta(days=counter*time_measure_factor)
 
-    return d_down, d_up
+    return d_down, d_up, counter*time_measure_factor
