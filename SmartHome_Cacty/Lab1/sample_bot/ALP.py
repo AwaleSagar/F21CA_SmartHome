@@ -26,16 +26,26 @@ from pymongo import MongoClient
 
 #MODEL_ADDR = "./NLU/models/nlu-20200216-142039/nlu"
 #MODEL_ADDR = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
-<<<<<<< HEAD
+
+#MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
+
+#MODEL_ADDR = "./NLU/models/20200331-192950/nlu"
+
+#-------------------------------------------------
+#MODEL_ADDR = "./NLU/models/20200331-192950_2/nlu"
 MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
-=======
-MODEL_ADDR = "./NLU/models/20200331-192950/nlu"
->>>>>>> 09ec8633ee12b27d6a8c3e2d215eb7954254bf4f
+#-------------------------------------------------
+
 
 # connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
 #MONGODB_URL = "mongodb://0.tcp.ngrok.io:10277"
 #MONGODB_URL = "mongodb://127.0.0.1:18239/?compressors=disabled&gssapiServiceName=mongodb"
-MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
+#MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
+#MONGODB_URL= "mongodb://0.tcp.ngrok.io:16206/?compressors=disabled&gssapiServiceName=mongodb"
+MONGODB_URL= "mongodb://0.tcp.ngrok.io:17356/?compressors=disabled&gssapiServiceName=mongodb"
+
+
+
 #MONGODB_URL= "mongodb://b64736ba.ngrok.io/"
 ## WAGI API PARAMS
 API_KEY = "dc7cf06b49047ee83091c9c350abcf80db6fbd43"
@@ -145,6 +155,10 @@ class ActionLanguageProcessor():
         
         if interpretation["intent"]['name'] == "take_action":
             return self._take_action(interpretation)
+        elif interpretation["intent"]['name'] == "action_variable":
+             return self._take_action(interpretation)
+        elif interpretation["intent"]['name'] == "take_action_variable":
+            return self._take_action(interpretation)        
         elif interpretation["intent"]['name'] == "get_info":
             return self._eco_friendly_fact(interpretation)
         elif interpretation["intent"]["name"] == "air_quality_today":
@@ -475,12 +489,14 @@ class ActionLanguageProcessor():
 
 if __name__ == "__main__":
     #utterance = "turn on the light in the kitchen"
-<<<<<<< HEAD
+
     #utterance = "turn on the light in living room"
     utterance = "give me an eco fact"
-=======
+
+
     utterance = "what is my consumption these last two weeks"
->>>>>>> 09ec8633ee12b27d6a8c3e2d215eb7954254bf4f
+    utterance = "can you give me air quality of last week ?"
+
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
     

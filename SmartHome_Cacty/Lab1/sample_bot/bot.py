@@ -37,7 +37,9 @@ from rasa.nlu.model import Interpreter
 # model path
 #model = "./NLU/models/nlu-20200214-113529/nlu"
 #model = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
-model = "./NLU/models/nlu-20200323-175228/nlu"
+#model = "./NLU/models/nlu-20200323-175228/nlu"
+model = "./NLU/models/20200331-192950_2/nlu"
+
 
 #model = "./NLU/models/20200310-190259/nlu"
 
@@ -48,7 +50,8 @@ model = "./NLU/models/nlu-20200323-175228/nlu"
 
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:11014/?compressors=disabled&gssapiServiceName=mongodb"
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:14723/?compressors=disabled&gssapiServiceName=mongodb"
-MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
+#MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
+MONGODB_URL= "mongodb://0.tcp.ngrok.io:16206/?compressors=disabled&gssapiServiceName=mongodb"
 
 MODEL_ADDR = model
 
