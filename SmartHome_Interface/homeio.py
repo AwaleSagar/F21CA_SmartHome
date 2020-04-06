@@ -49,7 +49,7 @@ def k2cel(x):
 while(1):
 	# process = "notepad++.exe"
 	# print(checkIfProcessRunning(process))
-	data = list(mycol.find().sort("address"))
+	data = list(mycol.find().sort('address'))
 	elapsed_time = time.time() - start
 	for i in range(len(data)):
 		temp = data[i]

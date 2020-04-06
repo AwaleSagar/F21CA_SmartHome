@@ -634,26 +634,47 @@
 - how can i [save](info) [water](info)
 
 ## intent:get_info_energy
-- hey can you let me know what was my [energy](info) [consumption](info) for [yesterday](time) ?
-- hey can you let me know what is my [energy](info) [consumption](info) for [today](time) ?
-- hey can you let me know what was my [energy](info) [consumption](info) for [this week](time) ?
-- hey can you let me know what is my [energy](info) [consumption](info) for [this month](time) ?
-- what is my [energy](info) [consumption](info) for [today](time) ?
-- what was my [energy](info) [consumption](info) for [yesterday](time) ?
-- what was my [energy](info) [consumption](info) for [this week](time) ?
-- what was my [energy](info) [consumption](info) for [this month](time) ?
-- I'd like to know my [energy](info) [consumption](info) for [today](time) ?
-- I'd like to know my [energy](info) [consumption](info) for [yesterday](time) ?
-- I'd like to know my [energy](info) [consumption](info) for [this week](time) ?
-- I'd like to know my [energy](info) [consumption](info) for [this month](time) ?
-- I would like to know my [energy](info) [consumption](info) for [today](time) ?
-- I would like to know my [energy](info) [consumption](info) for [yesterday](time) ?
-- I would like to know my [energy](info) [consumption](info) for [this week](time) ?
-- I would like to know my [energy](info) [consumption](info) for [this month](time) ?
-- Can you tell me how much [energy](info) did I [consumed](info) [today](time) ?
-- Can you tell me how much [energy](info) did I [consumed](info) [yesterday](time) ?
-- Can you tell me how much [energy](info) did I [consumed](info) [this week](time) ?
-- Can you tell me how much [energy](info) did I [consumed](info) [this month](time) ?
+- hey can you let me know what was my [energy](info) [consumption](info) for [yesterday](time)
+- hey can you let me know what is my [energy](info) [consumption](info) for [today](time)
+- hey can you let me know what was my [energy](info) [consumption](info) for [this week](time)
+- hey can you let me know what is my [energy](info) [consumption](info) for [this month](time)
+- hey can you let me know what was my [energy](info) [consumption](info) of my [light](appliance) for [yesterday](time)
+- hey can you let me know what is my [energy](info) [consumption](info) of my [heater](appliance) for [today](time)
+- hey can you let me know what was my [energy](info) [consumption](info) of my [light](appliance) for [this week](time)
+- hey can you let me know what is my [energy](info) [consumption](info) of my [heater](appliance) for [this month](time)
+
+- what is my [energy](info) [consumption](info) for [today](time)
+- what was my [energy](info) [consumption](info) for [yesterday](time)
+- what was my [energy](info) [consumption](info) for [this week](time)
+- what was my [energy](info) [consumption](info) for [this month](time)
+- what is my [energy](info) [consumption](info) of my [heater](appliance) for [today](time)
+- what was my [energy](info) [consumption](info) of my [light](appliance) for [yesterday](time)
+- what was my [energy](info) [consumption](info) of my [heater](appliance) for [this week](time)
+- what was my [energy](info) [consumption](info) of my [light](appliance) for [this month](time)
+
+- I'd like to know my [energy](info) [consumption](info) for [today](time)
+- I'd like to know my [energy](info) [consumption](info) for [yesterday](time)
+- I'd like to know my [energy](info) [consumption](info) for [this week](time)
+- I'd like to know my [energy](info) [consumption](info) for [this month](time)
+- I'd like to know my [energy](info) [consumption](info) of my [light](appliance) for [today](time)
+- I'd like to know my [energy](info) [consumption](info) of my [heater](appliance) for [yesterday](time)
+- I'd like to know my [energy](info) [consumption](info) of my [light](appliance) for [this week](time)
+- I'd like to know my [energy](info) [consumption](info) of my [heater](appliance) for [this month](time)
+
+- I would like to know my [energy](info) [consumption](info) for [today](time)
+- I would like to know my [energy](info) [consumption](info) for [yesterday](time)
+- I would like to know my [energy](info) [consumption](info) for [this week](time)
+- I would like to know my [energy](info) [consumption](info) for [this month](time)
+- I would like to know my [energy](info) [consumption](info) of my [light](appliance) for [today](time)
+- I would like to know my [energy](info) [consumption](info) of my [heater](appliance) for [yesterday](time)
+- I would like to know my [energy](info) [consumption](info) of my [light](appliance) for [this week](time)
+- I would like to know my [energy](info) [consumption](info) of my [heater](appliance) for [this month](time)
+
+
+- Can you tell me how much [energy](info) did I [consumed](info) [today](time)
+- Can you tell me how much [energy](info) did I [consumed](info) [yesterday](time)
+- Can you tell me how much [energy](info) did I [consumed](info) [this week](time)
+- Can you tell me how much [energy](info) did I [consumed](info) [this month](time)
 
 ## intent: air_quality_today
 - how [good](good) is the air today
