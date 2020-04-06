@@ -4,16 +4,17 @@ Created on Sun Feb 16 15:18:46 2020
 
 @author: dacca
 """
+# LIB IMPORTS
 import tensorflow as tf
 import datetime
 import requests
-from word2number import w2n
 import pandas as pd
-
 from pprint import pprint
-# import sklearn
+import os
+import numpy as np
 
-# print('The scikit-learn version is {}.'.format(sklearn.__version__))
+# OWN FILES IMPORTS
+from useful_functions import get_date_from_interpretation
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
@@ -25,7 +26,11 @@ from pymongo import MongoClient
 
 #MODEL_ADDR = "./NLU/models/nlu-20200216-142039/nlu"
 #MODEL_ADDR = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
+<<<<<<< HEAD
 MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
+=======
+MODEL_ADDR = "./NLU/models/20200331-192950/nlu"
+>>>>>>> 09ec8633ee12b27d6a8c3e2d215eb7954254bf4f
 
 # connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
 #MONGODB_URL = "mongodb://0.tcp.ngrok.io:10277"
@@ -36,13 +41,18 @@ MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiService
 API_KEY = "dc7cf06b49047ee83091c9c350abcf80db6fbd43"
 API_URL = f"https://api.waqi.info/feed/edinburgh/?token={API_KEY}"
 
-## DATASET PARAMS
-DATASET_FILE_NAME = "edi_air_quality.csv"
-DATASET_PATH = f"NLU/data/{DATASET_FILE_NAME}"
+## DATASETs PARAMS
+DATASETS_FOLDER = os.path.join(os.getcwd(),"../../../SmartHome_Interface/Data_Files")
+
+AIR_QUALITY_DATASET_FILE_NAME = "air_quality/edi_air_quality.csv"
+CONSUMPTION_DATASET_FILE_NAME = "energy_consumption/energy_consumption.pkl"
+TIMESTAMPS_DATASET_FILE_NAME = "energy_consumption/timestamps.csv"
+
+AIR_QUALITY_DATASET = pd.read_csv(os.path.join(DATASETS_FOLDER, AIR_QUALITY_DATASET_FILE_NAME))
+CONSUMPTION_DATASET = pd.read_pickle(os.path.join(DATASETS_FOLDER, CONSUMPTION_DATASET_FILE_NAME))
+TIMESTAMPS_DATASET = pd.read_csv(os.path.join(DATASETS_FOLDER, TIMESTAMPS_DATASET_FILE_NAME))
 
 THRESHOLD = 0.5
-
-dataset = pd.read_csv(DATASET_PATH)
 
 LOCATION_TO_ZONE = {"living" : "A", # living room
                     "washroom" : "B", # washroom
@@ -127,7 +137,7 @@ class ActionLanguageProcessor():
                 
         return key
 
-    def analyse_utterance(self, utterance="can you give factsme an eco-friendly fact"):
+    def analyse_utterance(self, utterance="can you give me an eco-friendly fact"):
         # parsing the utterance
         interpretation = self.interpreter.parse(utterance)
         
@@ -142,7 +152,7 @@ class ActionLanguageProcessor():
         elif interpretation["intent"]["name"] == "air_quality_historical":
             return self._get_historical_air_quality(interpretation)
         elif interpretation["intent"]["name"] == "get_info_energy":
-            return self._get_energy_consumption(interpretation)
+            return self._get_energy_consumption_timespan(interpretation)
 
     def _welcome_(self, interpretation):
         return "a"#random.choice(self.welcome)
@@ -342,9 +352,7 @@ class ActionLanguageProcessor():
 
         d_down = d_up - datetime.timedelta(days=counter*time_measure_factor)
 
-        rows_of_dataset = dataset[dataset.apply(lambda x: row_is_between_dates(x, low_date = d_down, up_date = d_up), axis=1)]
-
-        print(rows_of_dataset)
+        rows_of_dataset = AIR_QUALITY_DATASET[AIR_QUALITY_DATASET.apply(lambda x: row_is_between_dates(x, low_date = d_down, up_date = d_up), axis=1)]
 
         returned_response+=f"""
         \n
@@ -352,7 +360,7 @@ class ActionLanguageProcessor():
 
         """
 
-        for column in dataset.columns:
+        for column in AIR_QUALITY_DATASET.columns:
             if column != "date" :
                 print(rows_of_dataset[column])
                 returned_response += f"""
@@ -379,11 +387,100 @@ class ActionLanguageProcessor():
             })
         
             return energy_con["value"]
+
+    def _get_energy_consumption_timespan(self, interpretation):
+        """
+            Retrieves statistics about the energy consumption in a specific time span
+        """         
+
+        appliance = None
+
+        for entity in interpretation["entities"]:
+            if entity["entity"] == "appliance":
+                appliance = entity["value"]
+
+        d_down, d_up, day_count = get_date_from_interpretation(interpretation)     
+        plural = "s" if day_count > 1 else ""
+
+        timestamps = TIMESTAMPS_DATASET["Timestamps"].to_numpy()
+
+        if (appliance == None):
+            
+            #When no appliance is queried and a general house-wise energy consumption report is asked        
+            arrs = CONSUMPTION_DATASET["values"].to_numpy()
+
+            #Finds the timestamp between the limit dates when querying past consumption
+            timestamps_conditioned = np.array( #converts timestamps in booleans if 
+                [
+                    datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
+                ]
+            )
+
+            total = 0
+            for arr in arrs:
+                extracted_cons = np.extract(timestamps_conditioned,arr)
+                total += np.sum(extracted_cons)
+
+            extracted_cons = np.extract(timestamps_conditioned,arr)
+
+            total = np.sum(extracted_cons)
+
+            subject = "You"
     
+        elif (appliance.lower()[:6] == "light"):
+
+            # We retrieve multiple set of registered values as an array of array: [
+            #   [values of light 1], [values of light 2] ...
+            # ]
+            arrs = CONSUMPTION_DATASET[CONSUMPTION_DATASET["appliance"].str.contains('light',case=False)]["values"].to_numpy()
+
+            #Finds the timestamp between the limit dates when querying past consumption
+            timestamps_conditioned = np.array( #converts timestamps in booleans if 
+                [
+                    datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
+                ]
+            )
+
+            total = 0
+            for arr in arrs:
+                extracted_cons = np.extract(timestamps_conditioned,arr)
+                total += np.sum(extracted_cons)
+
+            subject = "Your lights"
+
+        elif (appliance.lower()[:4] == "heat"):
+
+            arrs = CONSUMPTION_DATASET[CONSUMPTION_DATASET["appliance"].str.contains('heat',case=False)]["values"].to_numpy()
+
+            #Finds the timestamp between the limit dates when querying past consumption
+            timestamps_conditioned = np.array( #converts timestamps in booleans if 
+                [
+                    datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
+                ]
+            )
+
+            total = 0
+            for arr in arrs:
+                extracted_cons = np.extract(timestamps_conditioned,arr)
+                total += np.sum(extracted_cons)
+
+            subject = "Your heaters"
+            
+
+        else:
+            return f"Query misunderstood, please repeat"
+
+
+        return f"{subject} consumed a total of {round(total, ndigits=2)} Wh over {day_count} day{plural}"
+
 if __name__ == "__main__":
     #utterance = "turn on the light in the kitchen"
+<<<<<<< HEAD
     #utterance = "turn on the light in living room"
     utterance = "give me an eco fact"
+=======
+    utterance = "what is my consumption these last two weeks"
+>>>>>>> 09ec8633ee12b27d6a8c3e2d215eb7954254bf4f
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
     
