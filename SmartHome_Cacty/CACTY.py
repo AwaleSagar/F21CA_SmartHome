@@ -147,8 +147,9 @@ class MainWindow():
         #text=self.variable1.get()
         data = {'user_id': 'test-user', 'question': text, 'session_id': 'someonearoundthecorner', 'projectId': 'CA2020', 'overrides': {'BOT_LIST': bot_list_ , 'PRIORITY_BOTS': [prio_bot_list_]}}
         #data = {'user_id': 'test-user', 'question': text, 'session_id': 'someonearoundthecorner', 'projectId': 'CA2020', 'overrides': {'BOT_LIST': bot_list_ , 'PRIORITY_BOTS': [prio_bot_list_, 'coherence_bot']}}
-
-        r= requests.post(url='http://52.23.135.246:5000', json=data)
+        
+        r= requests.post(url='http://52.56.181.83:5000', json=data)
+        #r= requests.post(url='http://52.23.135.246:5000', json=data)
         answer=r.json()['result']
 
         self.t1.configure(state='normal')
