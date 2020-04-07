@@ -23,7 +23,7 @@ from rasa.nlu.model import Interpreter
 
 # run 'pip install pymongo' to install this lib
 from pymongo import MongoClient
-
+import random
 #MODEL_ADDR = "./NLU/models/nlu-20200216-142039/nlu"
 #MODEL_ADDR = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
 
@@ -42,7 +42,7 @@ MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
 #MONGODB_URL = "mongodb://127.0.0.1:18239/?compressors=disabled&gssapiServiceName=mongodb"
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:16206/?compressors=disabled&gssapiServiceName=mongodb"
-MONGODB_URL= "mongodb://0.tcp.ngrok.io:17356/?compressors=disabled&gssapiServiceName=mongodb"
+MONGODB_URL= "mongodb://0.tcp.ngrok.io:17478/?compressors=disabled&gssapiServiceName=mongodb"
 
 
 
@@ -112,7 +112,14 @@ class ActionLanguageProcessor():
         self.db = self.DB_CLIENT.shome
         # loading the model from one directory or zip file
         self.interpreter = Interpreter.load(model_file)
-        self.welcome = ["Hello, nice to meet you! How can I help you?","Welcome to Alana Eco bot application. Can I help you?","Hi! How are you?"]
+        self.welcome = ["Hello, nice to meet you! How can I help you?","Nice to meet you!","Welcome to Alana Eco bot application. Can I help you?","Hi! How are you?","Welcome to Alana app.","Hi, How can I help you?"]
+        self.affirm = ["Nice !","Okay !","Good !"]
+        self.deny = ["Ok", "No worries"]
+        self.nicetomeeyou = ["Me too!", "I am happy to help you.","Feel free to ask for anyy help!"]
+        self.react_positive = ["Hahahaha","Thats funny!","Thanks!","I am happy to help you."]
+        self.thanking = ["You are welcome","I am happy to help you."] 
+        self.goodbye = ["Bye bye!","See you soon","Take care","Good bye","See you tomorrow"] 
+        self.sos = ["I am sending you the rescue (... ... not really)","The rescue have been informed (... ... not really)"] 
 
         self.action_device_mapping = {
                         "light" : {
@@ -167,34 +174,57 @@ class ActionLanguageProcessor():
             return self._get_historical_air_quality(interpretation)
         elif interpretation["intent"]["name"] == "get_info_energy":
             return self._get_energy_consumption_timespan(interpretation)
+        elif (interpretation["intent"]["name"] == "greet"):
+            return self._greet_(interpretation)
+        elif (interpretation["intent"]["name"] == "deny"):
+            return self._deny_(interpretation)
+        elif (interpretation["intent"]["name"] == "affirm"):
+            return self._affirm_(interpretation)
+        elif (interpretation["intent"]["name"] == "nicetomeeyou"):
+            return self._nicetomeeyou_(interpretation)        
+        elif (interpretation["intent"]["name"] == "react_positive"):
+            return self._react_positive_(interpretation)  
+        elif (interpretation["intent"]["name"] == "thanking"):
+            return self._thanking_(interpretation)  
+        elif (interpretation["intent"]["name"] == "goodbye"):
+            return self._goodbye_(interpretation)  
+        elif (interpretation["intent"]["name"] == "sos"):
+            return self._sos_(interpretation) 
+        else:
+            return self._greet_(interpretation)
+            
+        
+        
 
-    def _welcome_(self, interpretation):
-        return "a"#random.choice(self.welcome)
+    def _greet_(self, interpretation):     
+        return random.choice(self.welcome)
     def _affirm_(self, interpretation):
-        return "b"#random.choice(self.welcome)
+        return random.choice(self.affirm)
     def _deny_(self, interpretation):
-        return "c"#random.choice(self.welcome)
+        return random.choice(self.deny)
     def _nicetomeeyou_(self, interpretation):
-        return "d"#random.choice(self.welcome)
+        return random.choice(self.nicetomeeyou)
     def _react_positive_(self, interpretation):
-        return "e"#random.choice(self.welcome)
+        return random.choice(self.react_positive)
     def _thanking_(self, interpretation):
-        return "f"#random.choice(self.welcome)
+        return random.choice(self.thanking)
     def _goodbye_(self, interpretation):
-        return "j"#random.choice(self.welcome)
-
-    def _take_action_duration_(self, interpretation):
-        return "h"
-    def _take_action_variable_(self, interpretation):
-        return "k"
-    def _inform_(self, interpretation):
-        return "l"
-    def _repair_inform_(self, interpretation):
-        return "m"
-    def _air_quality_forecast_(self, interpretation):
-        return "n"
+        return random.choice(self.goodbye)
     def _sos_(self, interpretation):
-        return "o"
+        return random.choice(self.sos)
+
+    #not done
+    def _take_action_duration_(self, interpretation):
+        return "Not implemented yet 1"
+    def _take_action_variable_(self, interpretation):
+        return "Not implemented yet 2"
+    def _inform_(self, interpretation):
+        return "Not implemented yet 3"
+    def _repair_inform_(self, interpretation):
+        return "Not implemented yet 4"
+    def _air_quality_forecast_(self, interpretation):
+        return "Not implemented yet 5"
+
 
 
         
@@ -496,6 +526,8 @@ if __name__ == "__main__":
 
     utterance = "what is my consumption these last two weeks"
     utterance = "can you give me air quality of last week ?"
+    utterance = "turn off the living room light"
+
 
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))

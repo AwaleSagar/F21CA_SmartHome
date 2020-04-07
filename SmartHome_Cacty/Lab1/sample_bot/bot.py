@@ -32,13 +32,13 @@ parser.add_argument('-fv', '--file-verbosity', default='debug', help='File loggi
 
 #-----------------LOAD RASA MODEL----------------------------------------------------------
 
-from rasa.nlu.model import Interpreter
+#from rasa.nlu.model import Interpreter
 
 # model path
 #model = "./NLU/models/nlu-20200214-113529/nlu"
 #model = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
 #model = "./NLU/models/nlu-20200323-175228/nlu"
-model = "./NLU/models/20200331-192950_2/nlu"
+model = "./NLU/models/20200323-181158/nlu"
 
 
 #model = "./NLU/models/20200310-190259/nlu"
@@ -51,7 +51,8 @@ model = "./NLU/models/20200331-192950_2/nlu"
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:11014/?compressors=disabled&gssapiServiceName=mongodb"
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:14723/?compressors=disabled&gssapiServiceName=mongodb"
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
-MONGODB_URL= "mongodb://0.tcp.ngrok.io:16206/?compressors=disabled&gssapiServiceName=mongodb"
+#MONGODB_URL= "mongodb://0.tcp.ngrok.io:16206/?compressors=disabled&gssapiServiceName=mongodb"
+MONGODB_URL= "mongodb://0.tcp.ngrok.io:17478/?compressors=disabled&gssapiServiceName=mongodb"
 
 MODEL_ADDR = model
 
@@ -102,9 +103,9 @@ class EcoBot(Bot):
 
 	
         #alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
-        alp = ActionLanguageProcessor(mongodb_url="mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb", model_file=MODEL_ADDR)
+        alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL,model_file=MODEL_ADDR)
         self.response.result = alp.analyse_utterance(user_utterance)
-        
+        print(self.response.result)
         
         #---------------------------------------------------
         
