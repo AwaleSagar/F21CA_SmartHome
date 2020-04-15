@@ -14,7 +14,8 @@ import os
 import numpy as np
 
 # OWN FILES IMPORTS
-from useful_functions import get_date_from_interpretation
+from useful_functions import get_date_from_interpretation, two_arrays_random_permutation, get_air_quality_message
+from constants import *
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
@@ -23,83 +24,6 @@ from rasa.nlu.model import Interpreter
 
 # run 'pip install pymongo' to install this lib
 from pymongo import MongoClient
-
-#MODEL_ADDR = "./NLU/models/nlu-20200216-142039/nlu"
-#MODEL_ADDR = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
-
-#MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
-
-#MODEL_ADDR = "./NLU/models/20200331-192950/nlu"
-
-#-------------------------------------------------
-#MODEL_ADDR = "./NLU/models/20200331-192950_2/nlu"
-MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
-#-------------------------------------------------
-
-
-# connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
-#MONGODB_URL = "mongodb://0.tcp.ngrok.io:10277"
-#MONGODB_URL = "mongodb://127.0.0.1:18239/?compressors=disabled&gssapiServiceName=mongodb"
-#MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
-#MONGODB_URL= "mongodb://0.tcp.ngrok.io:16206/?compressors=disabled&gssapiServiceName=mongodb"
-MONGODB_URL= "mongodb://0.tcp.ngrok.io:17356/?compressors=disabled&gssapiServiceName=mongodb"
-
-
-
-#MONGODB_URL= "mongodb://b64736ba.ngrok.io/"
-## WAGI API PARAMS
-API_KEY = "dc7cf06b49047ee83091c9c350abcf80db6fbd43"
-API_URL = f"https://api.waqi.info/feed/edinburgh/?token={API_KEY}"
-
-## DATASETs PARAMS
-DATASETS_FOLDER = os.path.join(os.getcwd(),"../../../SmartHome_Interface/Data_Files")
-
-AIR_QUALITY_DATASET_FILE_NAME = "air_quality/edi_air_quality.csv"
-CONSUMPTION_DATASET_FILE_NAME = "energy_consumption/energy_consumption.pkl"
-TIMESTAMPS_DATASET_FILE_NAME = "energy_consumption/timestamps.csv"
-
-AIR_QUALITY_DATASET = pd.read_csv(os.path.join(DATASETS_FOLDER, AIR_QUALITY_DATASET_FILE_NAME))
-CONSUMPTION_DATASET = pd.read_pickle(os.path.join(DATASETS_FOLDER, CONSUMPTION_DATASET_FILE_NAME))
-TIMESTAMPS_DATASET = pd.read_csv(os.path.join(DATASETS_FOLDER, TIMESTAMPS_DATASET_FILE_NAME))
-
-THRESHOLD = 0.5
-
-LOCATION_TO_ZONE = {"living" : "A", # living room
-                    "washroom" : "B", # washroom
-                    "pantry" : "C", 
-                    "kitchen" : "D", 
-                    "entrance" : "E", # entrance hall
-                    "garage" : "F", 
-                    "hallway" : "G", 
-                    "bedroom one" : "H", # kids room
-                    "bathroom one" : "I", # bathroom
-                    "bedroom two" : "J",  # single bedroom
-                    "bathroom two" : "K", # bathroom
-                    "bedroom three" : "L", # double bedroom
-                    "laundry" : "M", 
-                    "office" : "N",
-                    "exterior" : "O"} # also include gate, pool and lights
-
-ENTITY_TO_DATABASE_NAME = {
-                "light" : "Light",
-                "heater" : "Heater"
-            }
-
-HEATING_CHANGE_RATE = 0.2
-
-ACTION_TO_DB_VALUE_MAPPING = {
-        "turn on": lambda x: "true",
-        "turn off": lambda x: "false",
-        "increase": lambda x: x*(1+HEATING_CHANGE_RATE),
-        "decrease": lambda x: x*(1-HEATING_CHANGE_RATE)
-    }
-
-ENERGY_CONSUMPTION_ADDRESSES = {
-    "hour":146,
-    "day":147,
-    "week":148,
-    "month":149
-        }
 
 class ActionLanguageProcessor():
     
@@ -167,6 +91,8 @@ class ActionLanguageProcessor():
             return self._get_historical_air_quality(interpretation)
         elif interpretation["intent"]["name"] == "get_info_energy":
             return self._get_energy_consumption_timespan(interpretation)
+        elif interpretation["intent"]["name"] == "energy_consumption_report":
+            return self._get_energy_consumption_report(interpretation)
 
     def _welcome_(self, interpretation):
         return "a"#random.choice(self.welcome)
@@ -235,8 +161,7 @@ class ActionLanguageProcessor():
                 
         location = ActionLanguageProcessor._maximumStrSimilarity(location,LOCATION_TO_ZONE.keys())    
         appliance = ActionLanguageProcessor._maximumStrSimilarity(appliance,ENTITY_TO_DATABASE_NAME.keys())    
-        print(location)
-        print(appliance)
+
         if location != None and appliance != None and action != None:
 
             if (appliance.lower() in self.action_device_mapping.keys() #We check the appliance is managed (i.e in ACTION_DEVICE_MAPPING)
@@ -263,17 +188,19 @@ class ActionLanguageProcessor():
 
                 #print(list_of_devices)
                 for device in list_of_devices:
-                    """
-                    print("--------------------")
-                    print(device)
-                    print("--------------------")
-                    """
+                    
+                    # print("--------------------")
+                    # print(device)
+                    # print("--------------------")
+                    
                     collection.update({
                             "address": device["address"]#The device that matches this address
                             },{
                                 "$set": {"state": ACTION_TO_DB_VALUE_MAPPING[action.lower()](device["state"]) }
                             })
                 
+                location = LOCATION_TO_NAME[location]
+
                 return f"Yes ! I {action} the {appliance} in {location}"
             
             #If incorrect, leaves the if and returns error NLG message
@@ -285,19 +212,48 @@ class ActionLanguageProcessor():
         r = requests.get(url=API_URL)
         response = r.json()
         #print(interpretation)
-        returned_response = f"""
-            Today's air is as follows:
-            - h: {response['data']['iaqi']['h']['v']}
-            - no2: {response['data']['iaqi']['no2']['v']}
-            - o3: {response['data']['iaqi']['o3']['v']}
-            - p: {response['data']['iaqi']['p']['v']}
-            - pm10: {response['data']['iaqi']['pm10']['v']}
-            - pm25: {response['data']['iaqi']['pm25']['v']}
-            - so2: {response['data']['iaqi']['so2']['v']}
+
+        # RETRIEVING THE GASES LEVELS AND CREATING INFORMATION LEVELS
+        ## OZONE
+        try:
+            ozone_val = response['data']['iaqi']['o3']['v']
+            ozone_level, ozone_msg = get_air_quality_message(OZONE_DESC, ozone_val)
+        except:
+            ozone_msg = "the measure is unavailable"
+
+        ## CARBON MONOXIDE
+        try:
+            carbon_monoxide_val = response['data']['iaqi']['co']['v']
+            carbon_monoxide_level, carbon_monoxide_msg = get_air_quality_message(CARBON_MONOXIDE_DESC, carbon_monoxide_val)
+        except:
+            carbon_monoxide_msg = "the measure is unavailable"
+
+        ## NITROGEN DIOXIDE
+        try:
+            nitrogen_dioxide_val = response['data']['iaqi']['no2']['v']
+            nitrogen_dioxide_level, nitrogen_dioxide_msg = get_air_quality_message(NITROGEN_DIOXIDE_DESC, nitrogen_dioxide_val)
+        except:
+            nitrogen_dioxide_msg = "the measure is unavailable"
+        
+
+        gases = ["ozone","carbon monoxide", "nitrogen dioxide"]
+        sentences = [ozone_msg, carbon_monoxide_msg, nitrogen_dioxide_msg]
+        terms = ["For the ", "Concerning the ", "Finally, the "]# terms used to write the sentences
+
+        gases, sentences = two_arrays_random_permutation(gases, sentences)
+
+        final_msg = f"""
+            For the {gases[0]} concentration, {sentences[0]}.
+            Concerning the {gases[1]} concentration, {sentences[1]}.
+            Finally, for the {gases[2]} concentration, {sentences[2]}.
             """
-        return returned_response
+
+        return final_msg
         
     def _get_historical_air_quality(self, interpretation):
+        """
+        Gives back information of air quality other a provided time measures
+        """
                 
         def row_is_between_dates(row, low_date, up_date):
             date_row = row["date"].split("/")
@@ -324,83 +280,88 @@ class ActionLanguageProcessor():
             elif entity["entity"] == "number":
                 number = entity["value"]
 
-        if number is None and hierarchy_number is None and time_measures is None:
-            returned_response = "Query not fully understood, returning last week data by default:"
-            hierarchy_number = "last"
-            time_measures = "week"
-
-        # count the number of unit of time measures
-        counter = 1
-        # convert the unit of time measures as days
-        time_measure_factor = 1
-
-        if (time_measures[0:4] == "week"):
-            time_measure_factor = 7
-        elif (time_measures[0:5] == "month"):
-            time_measure_factor = 30
-        elif (time_measures[0:4] == "year"):
-            time_measure_factor = 365
-
-        # e.g. last week
-        if (hierarchy_number == "last" and number is None):
-            counter = 1    
-        # e.g last 2 weeks
-        elif (hierarchy_number == "last" and number is not None):
-            try:
-                counter = int(number)
-            except:
-                counter = w2n.word_to_num(number)
-        elif (number is not None):
-            try:
-                counter = number
-            except:
-                counter = w2n.word_to_num(number)
-        # e.g one month ago (we then check the date one month ago and move 7 days ahead)
-        if (hierarchy_number != "last"):
-
-            d_up = datetime.date.today() - datetime.timedelta(days=counter*time_measure_factor) + datetime.timedelta(days = 7)
-
-        else:
-
-            d_up = datetime.date.today() # to switch for interval of time
-
-        d_down = d_up - datetime.timedelta(days=counter*time_measure_factor)
+        d_down, d_up, day_count = get_date_from_interpretation(interpretation)
 
         rows_of_dataset = AIR_QUALITY_DATASET[AIR_QUALITY_DATASET.apply(lambda x: row_is_between_dates(x, low_date = d_down, up_date = d_up), axis=1)]
 
-        returned_response+=f"""
-        \n
-        Air quality of the last {counter*time_measure_factor} days was like this:
+        mean_carbon_monoxide = round(rows_of_dataset[" co"].mean(), 1)
+        mean_ozone = round(rows_of_dataset[" o3"].mean(), 1)
+        mean_nitrogen_dioxide = round(rows_of_dataset[" no2"].mean(), 1)
 
-        """
+        carbon_monoxide_level, _ = get_air_quality_message(CARBON_MONOXIDE_DESC, mean_carbon_monoxide)
+        ozone_level, _ = get_air_quality_message(OZONE_DESC, mean_ozone)
+        nitrogen_dioxide_level, _ = get_air_quality_message(NITROGEN_DIOXIDE_DESC, mean_nitrogen_dioxide)
 
-        for column in AIR_QUALITY_DATASET.columns:
-            if column != "date" :
-                print(rows_of_dataset[column])
-                returned_response += f"""
-                - The average value of {column} is {rows_of_dataset[column].mean()}
-                """
+        carbon_monoxide_level = LEVELS[carbon_monoxide_level].lower()
+        ozone_level = LEVELS[ozone_level].lower()
+        nitrogen_dioxide_level = LEVELS[nitrogen_dioxide_level].lower()
+
+        if (carbon_monoxide_level == ozone_level and carbon_monoxide_level == nitrogen_dioxide_level):
+        
+            returned_response+=f"""
+            Over the last {day_count} days, the average concentration of carbon monoxide, 
+            ozone and nitrogen dioxide were all {ozone_level}.
+            """
+
+        else:
+
+            returned_response+=f"""
+            Over the last {day_count} days, the average concentration of carbon monoxide was {carbon_monoxide_level}, 
+            while the concentration of ozone and nitrogn dixodie were mutually {ozone_level} and {nitrogen_dioxide_level}.
+            """
 
         return returned_response
     
-    
-    def _get_energy_consumption(self, interpretation):
-        
-        collection = self.db.homeiomem
-        
-        time = None
-        
+    def _get_energy_consumption_report(self, interpretation):
+        """
+            Retrieves statistics, as a report, for the total energy consumption in a specific time span
+        """         
+
+        appliance = None
+
         for entity in interpretation["entities"]:
-            if entity["entity"] == "time":
-                time = ActionLanguageProcessor._maximumStrSimilarity(entity["value"], ENERGY_CONSUMPTION_ADDRESSES.keys())
-        print(time)
+            if entity["entity"] == "appliance":
+                appliance = entity["value"]
+
+        d_down, d_up, day_count = get_date_from_interpretation(interpretation)     
+        plural = "s" if day_count > 1 else ""
+
+        timestamps = TIMESTAMPS_DATASET["Timestamps"].to_numpy()
+
+        df = CONSUMPTION_DATASET.copy()
+
         
-        if time != None:
-            energy_con = collection.find_one({
-                    "address":ENERGY_CONSUMPTION_ADDRESSES[time]
-            })
-        
-            return energy_con["value"]
+
+        #Finds the timestamp between the limit dates when querying past consumption
+        timestamps_conditioned = np.array( #converts timestamps in booleans if 
+            [
+                datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
+            ]
+        )
+        #sum is the sum of consumption over the asked period of time
+        df["sum"] = df["values"].apply(lambda x: np.sum(np.extract(timestamps_conditioned, x)))
+
+        max_light = df.iloc[df[df["appliance"].str.contains('light',case=False)]["sum"].idxmax()]
+        max_heating = df.iloc[df[df["appliance"].str.contains('heat',case=False)]["sum"].idxmax()]
+
+        collection = self.db.homeio
+
+        light_room = collection.find_one({
+                        "address": int(max_light["address"])
+                })
+
+        heating_room = collection.find_one({
+                        "address": int(max_heating["address"])
+                })
+
+        light_room = ZONE_TO_LOCATION[light_room["zone"]]
+        heating_room = ZONE_TO_LOCATION[heating_room["zone"]]
+
+        return f"""
+            Over {day_count} day{plural}, the most heated room was the {heating_room} while the room with the lights turned on for the longest time was the {light_room}.
+            
+        """
+
 
     def _get_energy_consumption_timespan(self, interpretation):
         """
@@ -419,83 +380,78 @@ class ActionLanguageProcessor():
         timestamps = TIMESTAMPS_DATASET["Timestamps"].to_numpy()
 
         if (appliance == None):
-            
             #When no appliance is queried and a general house-wise energy consumption report is asked        
             arrs = CONSUMPTION_DATASET["values"].to_numpy()
-
-            #Finds the timestamp between the limit dates when querying past consumption
-            timestamps_conditioned = np.array( #converts timestamps in booleans if 
-                [
-                    datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
-                ]
-            )
-
-            total = 0
-            for arr in arrs:
-                extracted_cons = np.extract(timestamps_conditioned,arr)
-                total += np.sum(extracted_cons)
-
-            extracted_cons = np.extract(timestamps_conditioned,arr)
-
-            total = np.sum(extracted_cons)
-
             subject = "You"
     
         elif (appliance.lower()[:6] == "light"):
-
             # We retrieve multiple set of registered values as an array of array: [
             #   [values of light 1], [values of light 2] ...
             # ]
             arrs = CONSUMPTION_DATASET[CONSUMPTION_DATASET["appliance"].str.contains('light',case=False)]["values"].to_numpy()
-
-            #Finds the timestamp between the limit dates when querying past consumption
-            timestamps_conditioned = np.array( #converts timestamps in booleans if 
-                [
-                    datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
-                ]
-            )
-
-            total = 0
-            for arr in arrs:
-                extracted_cons = np.extract(timestamps_conditioned,arr)
-                total += np.sum(extracted_cons)
-
             subject = "Your lights"
 
         elif (appliance.lower()[:4] == "heat"):
-
-            arrs = CONSUMPTION_DATASET[CONSUMPTION_DATASET["appliance"].str.contains('heat',case=False)]["values"].to_numpy()
-
-            #Finds the timestamp between the limit dates when querying past consumption
-            timestamps_conditioned = np.array( #converts timestamps in booleans if 
-                [
-                    datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
-                ]
-            )
-
-            total = 0
-            for arr in arrs:
-                extracted_cons = np.extract(timestamps_conditioned,arr)
-                total += np.sum(extracted_cons)
-
+            arrs = CONSUMPTION_DATASET[CONSUMPTION_DATASET["appliance"].str.contains('heat',case=False)]["values"].to_numpy()       
             subject = "Your heaters"
             
-
         else:
             return f"Query misunderstood, please repeat"
 
 
-        return f"{subject} consumed a total of {round(total, ndigits=2)} Wh over {day_count} day{plural}"
+        #Finds the timestamp between the limit dates when querying past consumption
+        timestamps_conditioned = np.array( #converts timestamps in booleans if 
+            [
+                datetime.datetime.fromtimestamp(timestamp).date() >= d_down and datetime.datetime.fromtimestamp(timestamp).date() <= d_up for timestamp in timestamps
+            ]
+        )
+
+        selected_timestamps = np.extract(timestamps_conditioned, timestamps)
+
+        consumption_per_hour = {}
+
+        total = 0
+        for arr in arrs:
+            extracted_cons = np.extract(timestamps_conditioned,arr)
+            #for total
+            total += np.sum(extracted_cons)
+            #for a per-hour basis
+            for idx, cons in enumerate(extracted_cons):
+                timestamp = selected_timestamps[idx]
+                hour_of_timestamp = datetime.datetime.fromtimestamp(timestamp).hour
+
+                if hour_of_timestamp in consumption_per_hour.keys():
+                    consumption_per_hour[hour_of_timestamp] += cons
+                else:
+                    consumption_per_hour[hour_of_timestamp] = cons
+
+        most_cons_hour = max(consumption_per_hour, key=consumption_per_hour.get)
+        cons_of_most_cons_hour = consumption_per_hour[most_cons_hour]
+
+        mean_hour_cons = 0
+
+        for hour in consumption_per_hour.keys():
+            mean_hour_cons += consumption_per_hour[hour]
+
+        mean_hour_cons /= len(consumption_per_hour.keys())
+
+        excess = round((cons_of_most_cons_hour/mean_hour_cons) * 100 - 100, 1)
+
+        return f"""
+            {subject} consumed a total of {round(total, ndigits=2)} Watt hour over {day_count} day{plural}. 
+            You consumed the most energy at {most_cons_hour} o'clock, with {cons_of_most_cons_hour:.2f} Watt hour which is {excess}% more that the average hourly consumption over this period.
+            """
 
 if __name__ == "__main__":
-    #utterance = "turn on the light in the kitchen"
+    #utterance = "turn on the ligh+t in the kitchen"
 
-    #utterance = "turn on the light in living room"
-    utterance = "give me an eco fact"
+    # utterance = "turn on the light in living room"
+    # utterance = "give me an eco fact about the heating"
 
+    #utterance = "How good is the air right now?"
 
-    utterance = "what is my consumption these last two weeks"
-    utterance = "can you give me air quality of last week ?"
+    utterance = "what is my energy consumption report of the last three years"
+    #utterance = "can you give me air quality of last week ?"
 
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
