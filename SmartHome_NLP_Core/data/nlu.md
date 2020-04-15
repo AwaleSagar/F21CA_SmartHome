@@ -462,24 +462,24 @@
 - can you [turn on](action) [every](location) [light](appliance) 
 - can you [switch off](action) [every](location) [light](appliance) 
 - can you [switch on](action) [every](location) [light](appliance) 
-- can you [open](action) roller [shade](appliance) for [living](location) room 
-- can you [open](action) roller [shade](appliance) for [kitchen](location)
-- can you [open](action) roller [shade](appliance) for [bedroom](location) [1](number)
-- can you [close](action) roller [shade](appliance) for [living](location) room 
-- can you [close](action) roller [shade](appliance) for [kitchen](location)
-- can you [close](action) roller [shade](appliance) for [bedroom](location) [one](number)
-- i'd like to [open](action) roller [shade](appliance) for [living](location) room 
-- i'd like to [open](action) roller [shade](appliance) for [kitchen](location)
-- i'd like to [open](action) roller [shade](appliance) for [bedroom](location) [1](number)
-- i'd like to [close](action) roller [shade](appliance) for [living](location) room 
-- i'd like to [close](action) roller [shade](appliance) for [kitchen](location)
-- i'd like to [close](action) roller [shade](appliance) for [bedroom](location) [one](number)
-- [open](action) roller [shade](appliance) for [living](location) room 
-- [open](action) roller [shade](appliance) for [kitchen](location)
-- [open](action) roller [shade](appliance) for [bedroom](location) [1](number)
-- [close](action) roller [shade](appliance) for [living](location) room 
-- [close](action) roller [shade](appliance) for [kitchen](location)
-- [close](action) roller [shade](appliance) for [bedroom](location) [one](number)
+- can you [open](action) [shades](appliance) for [living](location) room 
+- can you [open](action) [shades](appliance) for [kitchen](location)
+- can you [open](action) [shades](appliance) for [bedroom](location) [1](number)
+- can you [close](action) [shades](appliance) for [living](location) room 
+- can you [close](action) [shades](appliance) for [kitchen](location)
+- can you [close](action) [shades](appliance) for [bedroom](location) [one](number)
+- i'd like to [open](action) [shades](appliance) for [living](location) room 
+- i'd like to [open](action) [shades](appliance) for [kitchen](location)
+- i'd like to [open](action) [shades](appliance) for [bedroom](location) [1](number)
+- i'd like to [close](action) [shades](appliance) for [living](location) room 
+- i'd like to [close](action) [shades](appliance) for [kitchen](location)
+- i'd like to [close](action) [shades](appliance) for [bedroom](location) [one](number)
+- [open](action) [shades](appliance) for [living](location) room 
+- [open](action) [shades](appliance) for [kitchen](location)
+- [open](action) [shades](appliance) for [bedroom](location) [1](number)
+- [close](action) [shades](appliance) for [living](location) room 
+- [close](action) [shades](appliance) for [kitchen](location)
+- [close](action) [shades](appliance) for [bedroom](location) [one](number)
 
 ## intent:take_action_variable
 - i'd like to [dim](unit) the [light](appliance) in the [bedroom](location) 
@@ -584,12 +584,12 @@
 - actually i would prefer [light](appliance) in [living](location) room
 - actually i would prefer [light](appliance) in [bedroom](location)
 - actually i would prefer [tv](appliance) in [living](location) room
-- instead could it be  [light](appliance) in [bedroom](location)
-- instead could it be  [light](appliance) in [kitchen](location)
-- instead could it be  [light](appliance) in [washroom](location)
-- instead could it be  [light](appliance) in [living](location) room
-- instead could it be  [light](appliance) in [bedroom](location)
-- instead could it be  [tv](appliance) in [living](location) room
+- instead could it be [light](appliance) in [bedroom](location)
+- instead could it be [light](appliance) in [kitchen](location)
+- instead could it be [light](appliance) in [washroom](location)
+- instead could it be [light](appliance) in [living](location) room
+- instead could it be [light](appliance) in [bedroom](location)
+- instead could it be [tv](appliance) in [living](location) room
 - in reality i would like it for [light](appliance) in [bedroom](location)
 - in reality i would like it for [light](appliance) in [kitchen](location)
 - in reality i would like it for [light](appliance) in [washroom](location)
@@ -607,13 +607,13 @@
 - give me an [eco-fact](info) about the [light](appliance)
 - give me an [eco-fact](info) about the [heating](appliance)
 - give me an [eco-fact](info) about the [heater](appliance)
-- give me an [eco-fact](info) about the [roller shades](appliance)
+- give me an [eco-fact](info) about the [shades](appliance)
 - give me an [eco-fact](info) about the [tv](appliance)
 - i'd like to know an [eco-fact](info) about the [oven](appliance)
 - i'd like to know an [eco-fact](info) about the [light](appliance)
 - i'd like to know an [eco-fact](info) about the [heating](appliance)
 - i'd like to know an [eco-fact](info) about the [tv](appliance)
-- i'd like to know an [eco-fact](info) about the [roller shades](appliance)
+- i'd like to know an [eco-fact](info) about the [shades](appliance)
 - i'd like to know an [eco-fact](info) about the [heater](appliance)
 - tell me how to [recycle](info)
 - tell me how to [save](info) [gas](info)
@@ -625,7 +625,7 @@
 - in what ways can i [save](info) [gas](info)
 - in what ways can i [save](info) [water](info)
 - give me an [eco-fact](info) about the [oven](appliance)
-- give me an [eco-fact](info) about the [roller shades](appliance)
+- give me an [eco-fact](info) about the [shades](appliance)
 - give me an [eco-fact](info) about [light](appliance)
 - give me an [eco-fact](info) about [heater](appliance)
 - how do i [save](info) [gas](info)
@@ -675,11 +675,24 @@
 - I would like to know my [energy](info) [consumption](info) of my [light](appliance) for [this week](time)
 - I would like to know my [energy](info) [consumption](info) of my [heater](appliance) for [this month](time)
 
-
 - Can you tell me how much [energy](info) did I [consumed](info) [today](time)
 - Can you tell me how much [energy](info) did I [consumed](info) [yesterday](time)
 - Can you tell me how much [energy](info) did I [consumed](info) [this week](time)
 - Can you tell me how much [energy](info) did I [consumed](info) [this month](time)
+
+## intent:get_info_temprature
+
+- hey can you let me know what is my current [bedroom](location) [temperature](info)
+- what is my current [bedroom](location) [temperature](info)
+- please let me know what [bedroom](location) [temperature](info)
+- [temperature](info) of my [bedroom](location)
+- can you let me know what is my [bedroom](location) [temperature](info)
+
+- hey can you let me know what is my current [living](location) room [temperature](info)
+- what is my current [living](location) room [temperature](info)
+- please let me know what [living](location) room [temperature](info)
+- [temperature](info) of my [living](location) room
+- can you let me know what is my [living](location) room [temperature](info)
 
 ## intent: air_quality_today
 - how [good](good) is the air today
@@ -850,7 +863,11 @@
 data/lookups/number.txt
 
 ## lookup:appliance
-data/lookups/appliance.txt
+- light
+- heater
+- shades
+- gate
+- siren
 
 ## lookup:time
 - minutes
@@ -862,13 +879,17 @@ data/lookups/appliance.txt
 - hour
 
 ## lookup:location
-- bedroom
 - living
+- washroom
+- pantry
 - kitchen
-- attic
+- entrance
 - garage
-- storeroom
+- hallway
+- bedroom
+- laundry
 - office
+- exterior
 
 ## lookup:info
 - enviornmental
@@ -894,12 +915,28 @@ data/lookups/appliance.txt
 - each 
 - the utmost
 
+## synonym:gate
+- door
+- exit
+- gateway
+- doorway
+- portal
+
+## synonym:heater
+- radiator
+
 ## synonym:energy
 - power
 - electricity
 
-## synonym:shade
-- shades
+## synonym:temperature
+- thermal reading
+- degree
+- condition
+- climate
+
+## synonym:shades
+- shade
 - blind
 - blinds
 - shutter
@@ -912,18 +949,7 @@ data/lookups/appliance.txt
 - lamp
 - lamps
 - bulb
-- tubelight 
-- torch
-
-## synonym:tv
-- box
-- television
-- idot box
-- tv set
-- televin
-- telvision
-- telvis
-
+- tubelight
 
 ## synonym:tell
 - advise

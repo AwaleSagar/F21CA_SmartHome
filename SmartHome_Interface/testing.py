@@ -1,13 +1,13 @@
-import psutil
-import clr
+# import psutil
+# import clr
 import pymongo
 
-clr.AddReference('EngineIO')
+# clr.AddReference('EngineIO')
 
-from EngineIO import *
-from globals import *
+# from EngineIO import *
+# from globals import *
 
-# myclient = pymongo.MongoClient("mongodb://0.tcp.ngrok.io:16959")
+# myclient = pymongo.MongoClient("mongodb://f21ca:heriot123@18.219.152.221:27017/")
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["shome"]
 mycol = mydb["homeio"]
