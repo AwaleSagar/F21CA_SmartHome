@@ -16,7 +16,14 @@ import numpy as np
 # OWN FILES IMPORTS
 from useful_functions import get_date_from_interpretation
 
+<<<<<<< HEAD
 # tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+=======
+
+from calendarEvents.setting_google_api import service
+from calendarEvents.read_events import get_next_event, get_all_day_events, get_last_event
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+>>>>>>> 1e1b69a4aadaf1d81dab3a094b6439ce97f4e6ad
 
 ### TEMPORARY TO TEST BEFORE PLUGING TO DATABASE
 from rasa.nlu.model import Interpreter
@@ -33,7 +40,11 @@ import random
 
 #-------------------------------------------------
 #MODEL_ADDR = "./NLU/models/20200331-192950_2/nlu"
+<<<<<<< HEAD
 MODEL_ADDR = "/home/osboxes/Documents/F21CA_SmartHome/SmartHome_NLP_Core/models/nlu"
+=======
+MODEL_ADDR = "/home/jalex/Documents/HWU/Natural_Language_Processing/F21CA_SmartHome/SmartHome_NLP_Core/models/nlu_calendar"
+>>>>>>> 1e1b69a4aadaf1d81dab3a094b6439ce97f4e6ad
 #-------------------------------------------------
 
 
@@ -194,7 +205,13 @@ class ActionLanguageProcessor():
         elif (interpretation["intent"]["name"] == "goodbye"):
             return self._goodbye_(interpretation)  
         elif (interpretation["intent"]["name"] == "sos"):
-            return self._sos_(interpretation) 
+            return self._sos_(interpretation)
+        elif (interpretation["intent"]["name"] == "next_event"):
+            return self._get_next_event(interpretation)
+        elif (interpretation["intent"]["name"] == "first_last_event"):
+            return self._get_first_last_event(interpretation)
+        elif (interpretation["intent"]["name"] == "day_events"):
+            return self._get_day_events(interpretation)
         else:
             return self._greet_(interpretation)
             
@@ -217,6 +234,60 @@ class ActionLanguageProcessor():
         return random.choice(self.goodbye)
     def _sos_(self, interpretation):
         return random.choice(self.sos)
+
+
+    #calendar related intents
+    def _get_next_event(self, interpretation):
+        now = datetime.datetime.now()
+        time = None
+        if len(interpretation["entities"]) > 0:
+            for entity in interpretation["entities"]:
+                if entity["entity"] == "time":
+                    time = entity["value"]
+        if time == "today":
+            return get_next_event(service, now, 1)
+        elif time == "tomorrow":
+            return get_next_event(service, now, 2)
+        else:
+            return get_next_event(service, now)
+    def _get_first_last_event(self, interpretation):
+        now = datetime.datetime.now()
+        time = None
+        rank = None
+        if len(interpretation["entities"]) > 0:
+            for entity in interpretation["entities"]:
+                if entity["entity"] == "time":
+                    time = entity["value"]
+                if entity["entity"] == "rank":
+                    rank = entity["value"]
+        if rank == "first":
+            if time == "today" or time is None:
+                return get_next_event(service, now, 1)
+            elif time == "tomorrow":
+                return get_next_event(service, now, 2)
+            else:
+                return "Time not defined."
+        elif rank == "last":
+            if time == "today" or time is None:
+                return get_last_event(service, now, True)
+            elif time == "tomorrow":
+                return  get_last_event(service, now, False)
+            else:
+                return "Time not defined."
+        else:
+            return "Rank not defined."
+    def _get_day_events(self, interpretation):
+        now = datetime.datetime.now()
+        time = None
+        if len(interpretation["entities"]) > 0:
+            for entity in interpretation["entities"]:
+                if entity["entity"] == "time":
+                    time = entity["value"]
+        if time == "tomorrow":
+            return get_all_day_events(service, now, False)
+        else:
+            return get_all_day_events(service, now, True)
+
 
     #not done
     def _take_action_duration_(self, interpretation):
@@ -252,7 +323,7 @@ class ActionLanguageProcessor():
             
         answer = collection.aggregate([{ "$match": { "Fact Category": "eco" } },{ "$sample": { "size": 1 } }])
         fact = [tmp for tmp in answer][0]
-        return fact['Fact'] 
+        return fact['Fact']
         #answer.parse()
         
 
@@ -529,9 +600,18 @@ if __name__ == "__main__":
     # utterance = "give me an eco fact"
 
 
+<<<<<<< HEAD
     # utterance = "what is my consumption these last two weeks"
     # utterance = "can you give me air quality of last week ?"
     utterance = "turn off the living room light"
+=======
+    utterance = "what is my consumption these last two weeks"
+    utterance = "can you give me air quality of last week ?"
+    #utterance = "turn off the living room light"
+    utterance = "what's my next event?"
+    utterance = "what's my agenda for today?"
+    utterance = "what's my last event tomorrow?"
+>>>>>>> 1e1b69a4aadaf1d81dab3a094b6439ce97f4e6ad
 
 
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
