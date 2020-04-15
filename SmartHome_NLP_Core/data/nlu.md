@@ -632,6 +632,11 @@
 - how can i [save](info) [gas](info)
 - how do i [save](info) [water](info)
 - how can i [save](info) [water](info)
+- how can i [save](info) energy for my [heating](appliance)
+- how can i [save](info) energy for my [light](appliance)
+- can you help me [save](info) energy with my [heating](appliance)
+- can you help me [save](info) energy with my [heating](appliance)
+
 
 ## intent:get_info_energy
 - hey can you let me know what was my [energy](info) [consumption](info) for [yesterday](time)
@@ -712,6 +717,24 @@
 - There is a [fire](priority) in the house
 - Please call [911](priority)
 - I am in [pain](priority) please [help](signal)
+
+## intent: energy_consumption_report
+- give me my energy consumption report of the [last](hierarchy_number) [two](number) [months](time)
+- give me my energy consumption reportof the [last](hierarchy_number) [10](number) [months](time)
+- give me my energy consumption report of the [last](hierarchy_number) [two](number) [weeks](time)
+
+- what is my energy consumption report of the [last](hierarchy_number) [three](number) [years](time)
+- what is my energy consumption report of the [last](hierarchy_number) [4](number) [years](time)
+- what is my energy consumption report of the [last](hierarchy_number) [ten](number) [weeks](time)
+
+- can you give me my energy consumption report of the [last](hierarchy_number) [three](number) [days](time)
+- can you give me my energy consumption report of the [last](hierarchy_number) [five](number) [weeks](time)
+- can you give me my energy consumption report of the [last](hierarchy_number) [ten](number) [months](time)
+
+- tell me my energy consumption report of the [last](hierarchy_number) [seven](number) [days](time)
+- tell me my energy consumption report of the [last](hierarchy_number) [five](number) [weeks](time)
+- tell me my energy consumption report of the [last](hierarchy_number) [ten](number) [months](time)
+
 
 ## intent:nicetomeeyou
 - Delighted to make your acquaintance.

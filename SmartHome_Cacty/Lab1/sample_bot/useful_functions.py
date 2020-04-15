@@ -1,5 +1,6 @@
 import datetime
 from word2number import w2n
+import numpy as np
 
 
 def get_date_from_interpretation(interpretation):
@@ -60,3 +61,30 @@ def get_date_from_interpretation(interpretation):
     d_down = d_up - datetime.timedelta(days=counter*time_measure_factor)
 
     return d_down, d_up, counter*time_measure_factor
+
+
+def get_air_quality_message(message_dict, val):
+
+    thresholds = message_dict.keys()
+
+    level = -1
+    msg = ""
+    
+    for idx, thresh in enumerate(thresholds):
+        if val < thresh:
+            level = message_dict[thresh]["level"]
+            msg = message_dict[thresh]["desc"]
+            
+            return level, msg
+
+    return level, msg #if things went wrong
+
+
+def two_arrays_random_permutation(a, b):
+    """
+        Randomly change the order of two arrays the same way (arrays need to be the same size)
+    """
+    assert len(a) == len(b)
+    a = np.array(a); b = np.array(b)
+    p = np.random.permutation(len(a))
+    return a[p], b[p]
