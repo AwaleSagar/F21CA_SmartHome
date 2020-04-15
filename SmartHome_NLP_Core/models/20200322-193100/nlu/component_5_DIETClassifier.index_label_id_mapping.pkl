@@ -1,1 +1,0 @@
-{"0": "affirm", "1": "air_quality_forecast", "10": "nicetomeeyou", "11": "react_positive", "12": "repair_inform", "13": "sos", "14": "take_action", "15": "take_action_duration", "16": "take_action_variable", "17": "thanking", "2": "air_quality_historical", "3": "air_quality_today", "4": "deny", "5": "get_info", "6": "get_info_energy", "7": "goodbye", "8": "greet", "9": "inform"}
