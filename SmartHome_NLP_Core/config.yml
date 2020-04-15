@@ -11,10 +11,14 @@ pipeline:
     min_ngram: 1
     max_ngram: 4
   - name: DIETClassifier
-    epochs: 100
+    epochs: 700
   - name: EntitySynonymMapper
   - name: ResponseSelector
-    epochs: 100
+    epochs: 300
+  - name: DucklingHTTPExtractor
+    url: "http://localhost:8000"
+    # dimensions to extract
+    dimensions: ["time", "number", "amount-of-money", "distance"]
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/

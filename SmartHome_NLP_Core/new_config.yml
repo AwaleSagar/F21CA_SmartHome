@@ -5,6 +5,7 @@ pipeline:
 - name: "SpacyFeaturizer"
 - name: "CRFEntityExtractor"
 - name: "SklearnIntentClassifier"
+  epochs: 6000
 - name: DucklingHTTPExtractor
   url: "http://localhost:8000"
   # dimensions to extract

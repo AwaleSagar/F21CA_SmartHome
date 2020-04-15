@@ -5,7 +5,7 @@ Created on Sun Feb 16 15:18:46 2020
 @author: dacca
 """
 # LIB IMPORTS
-import tensorflow as tf
+# import tensorflow as tf
 import datetime
 import requests
 import pandas as pd
@@ -16,7 +16,7 @@ import numpy as np
 # OWN FILES IMPORTS
 from useful_functions import get_date_from_interpretation
 
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+# tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 ### TEMPORARY TO TEST BEFORE PLUGING TO DATABASE
 from rasa.nlu.model import Interpreter
@@ -33,7 +33,7 @@ import random
 
 #-------------------------------------------------
 #MODEL_ADDR = "./NLU/models/20200331-192950_2/nlu"
-MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
+MODEL_ADDR = "/home/osboxes/Documents/F21CA_SmartHome/SmartHome_NLP_Core/models/nlu"
 #-------------------------------------------------
 
 
@@ -42,7 +42,7 @@ MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
 #MONGODB_URL = "mongodb://127.0.0.1:18239/?compressors=disabled&gssapiServiceName=mongodb"
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
 #MONGODB_URL= "mongodb://0.tcp.ngrok.io:16206/?compressors=disabled&gssapiServiceName=mongodb"
-MONGODB_URL= "mongodb://0.tcp.ngrok.io:17478/?compressors=disabled&gssapiServiceName=mongodb"
+MONGODB_URL= "mongodb://f21ca:watt6789@18.219.152.221:27017/shome"
 
 
 
@@ -52,7 +52,7 @@ API_KEY = "dc7cf06b49047ee83091c9c350abcf80db6fbd43"
 API_URL = f"https://api.waqi.info/feed/edinburgh/?token={API_KEY}"
 
 ## DATASETs PARAMS
-DATASETS_FOLDER = os.path.join(os.getcwd(),"../../../SmartHome_Interface/Data_Files")
+DATASETS_FOLDER = os.path.join(os.getcwd(),"/home/osboxes/Documents/F21CA_SmartHome/SmartHome_Interface/Data_Files")
 
 AIR_QUALITY_DATASET_FILE_NAME = "air_quality/edi_air_quality.csv"
 CONSUMPTION_DATASET_FILE_NAME = "energy_consumption/energy_consumption.pkl"
@@ -111,7 +111,7 @@ class ActionLanguageProcessor():
         # I created a database called simple_appliances_db
         self.db = self.DB_CLIENT.shome
         # loading the model from one directory or zip file
-        self.interpreter = Interpreter.load(model_file)
+        # self.interpreter = Interpreter.load(model_file)
         self.welcome = ["Hello, nice to meet you! How can I help you?","Nice to meet you!","Welcome to Alana Eco bot application. Can I help you?","Hi! How are you?","Welcome to Alana app.","Hi, How can I help you?"]
         self.affirm = ["Nice !","Okay !","Good !"]
         self.deny = ["Ok", "No worries"]
@@ -131,7 +131,7 @@ class ActionLanguageProcessor():
                                   "collection": self.db.homeio
                                   }
                           }
-        print(mongodb_url)
+        # print(mongodb_url)
     def __str__(self):
         return str(self.action_device_mapping)
     
@@ -154,11 +154,16 @@ class ActionLanguageProcessor():
                 
         return key
 
-    def analyse_utterance(self, utterance="can you give me an eco-friendly fact"):
+    def analyse_utterance(self, utterance="hello"):
         # parsing the utterance
-        interpretation = self.interpreter.parse(utterance)
+        # interpretation = self.interpreter.parse(utterance)
+
+        url = "http://18.219.152.221:5005/model/parse"
+        payload = "{\"text\":" + "\"{}\"".format(utterance) +"}"
+        r = requests.request("POST", url, data = payload)
+        interpretation = r.json()
         
-        pprint(interpretation)
+        #pprint(interpretation)
         
         if interpretation["intent"]['name'] == "take_action":
             return self._take_action(interpretation)
@@ -265,8 +270,8 @@ class ActionLanguageProcessor():
                 
         location = ActionLanguageProcessor._maximumStrSimilarity(location,LOCATION_TO_ZONE.keys())    
         appliance = ActionLanguageProcessor._maximumStrSimilarity(appliance,ENTITY_TO_DATABASE_NAME.keys())    
-        print(location)
-        print(appliance)
+        # print(location)
+        # print(appliance)
         if location != None and appliance != None and action != None:
 
             if (appliance.lower() in self.action_device_mapping.keys() #We check the appliance is managed (i.e in ACTION_DEVICE_MAPPING)
@@ -521,11 +526,11 @@ if __name__ == "__main__":
     #utterance = "turn on the light in the kitchen"
 
     #utterance = "turn on the light in living room"
-    utterance = "give me an eco fact"
+    # utterance = "give me an eco fact"
 
 
-    utterance = "what is my consumption these last two weeks"
-    utterance = "can you give me air quality of last week ?"
+    # utterance = "what is my consumption these last two weeks"
+    # utterance = "can you give me air quality of last week ?"
     utterance = "turn off the living room light"
 
 
