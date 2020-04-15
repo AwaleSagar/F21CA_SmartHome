@@ -5,7 +5,7 @@ Created on Sun Feb 16 15:18:46 2020
 @author: dacca
 """
 # LIB IMPORTS
-import tensorflow as tf
+# import tensorflow as tf
 import datetime
 import requests
 import pandas as pd
@@ -17,6 +17,9 @@ import numpy as np
 from useful_functions import get_date_from_interpretation, two_arrays_random_permutation, get_air_quality_message
 from constants import *
 
+
+from calendarEvents.setting_google_api import service
+from calendarEvents.read_events import get_next_event, get_all_day_events, get_last_event
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 ### TEMPORARY TO TEST BEFORE PLUGING TO DATABASE
@@ -24,6 +27,84 @@ from rasa.nlu.model import Interpreter
 
 # run 'pip install pymongo' to install this lib
 from pymongo import MongoClient
+import random
+#MODEL_ADDR = "./NLU/models/nlu-20200216-142039/nlu"
+#MODEL_ADDR = "./NLU/models/Old_NLU/nlu-20200214-113529/nlu"
+
+#MODEL_ADDR = "./NLU/models/20200323-181158/nlu"
+
+#MODEL_ADDR = "./NLU/models/20200331-192950/nlu"
+
+#-------------------------------------------------
+#MODEL_ADDR = "./NLU/models/20200331-192950_2/nlu"
+#MODEL_ADDR = "/home/osboxes/Documents/F21CA_SmartHome/SmartHome_NLP_Core/models/nlu"
+MODEL_ADDR = "/home/jalex/Documents/HWU/Natural_Language_Processing/F21CA_SmartHome/SmartHome_NLP_Core/models/nlu_calendar"
+#-------------------------------------------------
+
+
+# connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
+#MONGODB_URL = "mongodb://0.tcp.ngrok.io:10277"
+#MONGODB_URL = "mongodb://127.0.0.1:18239/?compressors=disabled&gssapiServiceName=mongodb"
+#MONGODB_URL= "mongodb://0.tcp.ngrok.io:16626/?compressors=disabled&gssapiServiceName=mongodb"
+#MONGODB_URL= "mongodb://0.tcp.ngrok.io:16206/?compressors=disabled&gssapiServiceName=mongodb"
+MONGODB_URL= "mongodb://f21ca:watt6789@18.219.152.221:27017/shome"
+
+
+
+#MONGODB_URL= "mongodb://b64736ba.ngrok.io/"
+## WAGI API PARAMS
+API_KEY = "dc7cf06b49047ee83091c9c350abcf80db6fbd43"
+API_URL = f"https://api.waqi.info/feed/edinburgh/?token={API_KEY}"
+
+## DATASETs PARAMS
+DATASETS_FOLDER = os.path.join(os.getcwd(),"/home/osboxes/Documents/F21CA_SmartHome/SmartHome_Interface/Data_Files")
+
+AIR_QUALITY_DATASET_FILE_NAME = "air_quality/edi_air_quality.csv"
+CONSUMPTION_DATASET_FILE_NAME = "energy_consumption/energy_consumption.pkl"
+TIMESTAMPS_DATASET_FILE_NAME = "energy_consumption/timestamps.csv"
+
+AIR_QUALITY_DATASET = pd.read_csv(os.path.join(DATASETS_FOLDER, AIR_QUALITY_DATASET_FILE_NAME))
+CONSUMPTION_DATASET = pd.read_pickle(os.path.join(DATASETS_FOLDER, CONSUMPTION_DATASET_FILE_NAME))
+TIMESTAMPS_DATASET = pd.read_csv(os.path.join(DATASETS_FOLDER, TIMESTAMPS_DATASET_FILE_NAME))
+
+THRESHOLD = 0.5
+
+LOCATION_TO_ZONE = {"living" : "A", # living room
+                    "washroom" : "B", # washroom
+                    "pantry" : "C", 
+                    "kitchen" : "D", 
+                    "entrance" : "E", # entrance hall
+                    "garage" : "F", 
+                    "hallway" : "G", 
+                    "bedroom one" : "H", # kids room
+                    "bathroom one" : "I", # bathroom
+                    "bedroom two" : "J",  # single bedroom
+                    "bathroom two" : "K", # bathroom
+                    "bedroom three" : "L", # double bedroom
+                    "laundry" : "M", 
+                    "office" : "N",
+                    "exterior" : "O"} # also include gate, pool and lights
+
+ENTITY_TO_DATABASE_NAME = {
+                "light" : "Light",
+                "heater" : "Heater"
+            }
+
+HEATING_CHANGE_RATE = 0.2
+
+ACTION_TO_DB_VALUE_MAPPING = {
+        "turn on": lambda x: "true",
+        "turn off": lambda x: "false",
+        "increase": lambda x: x*(1+HEATING_CHANGE_RATE),
+        "decrease": lambda x: x*(1-HEATING_CHANGE_RATE)
+    }
+
+ENERGY_CONSUMPTION_ADDRESSES = {
+    "hour":146,
+    "day":147,
+    "week":148,
+    "month":149
+        }
 
 class ActionLanguageProcessor():
     
@@ -35,8 +116,15 @@ class ActionLanguageProcessor():
         # I created a database called simple_appliances_db
         self.db = self.DB_CLIENT.shome
         # loading the model from one directory or zip file
-        self.interpreter = Interpreter.load(model_file)
-        self.welcome = ["Hello, nice to meet you! How can I help you?","Welcome to Alana Eco bot application. Can I help you?","Hi! How are you?"]
+        # self.interpreter = Interpreter.load(model_file)
+        self.welcome = ["Hello, nice to meet you! How can I help you?","Nice to meet you!","Welcome to Alana Eco bot application. Can I help you?","Hi! How are you?","Welcome to Alana app.","Hi, How can I help you?"]
+        self.affirm = ["Nice !","Okay !","Good !"]
+        self.deny = ["Ok", "No worries"]
+        self.nicetomeeyou = ["Me too!", "I am happy to help you.","Feel free to ask for anyy help!"]
+        self.react_positive = ["Hahahaha","Thats funny!","Thanks!","I am happy to help you."]
+        self.thanking = ["You are welcome","I am happy to help you."] 
+        self.goodbye = ["Bye bye!","See you soon","Take care","Good bye","See you tomorrow"] 
+        self.sos = ["I am sending you the rescue (... ... not really)","The rescue have been informed (... ... not really)"] 
 
         self.action_device_mapping = {
                         "light" : {
@@ -48,7 +136,7 @@ class ActionLanguageProcessor():
                                   "collection": self.db.homeio
                                   }
                           }
-        print(mongodb_url)
+        # print(mongodb_url)
     def __str__(self):
         return str(self.action_device_mapping)
     
@@ -71,11 +159,16 @@ class ActionLanguageProcessor():
                 
         return key
 
-    def analyse_utterance(self, utterance="can you give me an eco-friendly fact"):
+    def analyse_utterance(self, utterance="hello"):
         # parsing the utterance
-        interpretation = self.interpreter.parse(utterance)
+        # interpretation = self.interpreter.parse(utterance)
+
+        url = "http://18.219.152.221:5005/model/parse"
+        payload = "{\"text\":" + "\"{}\"".format(utterance) +"}"
+        r = requests.request("POST", url, data = payload)
+        interpretation = r.json()
         
-        pprint(interpretation)
+        #pprint(interpretation)
         
         if interpretation["intent"]['name'] == "take_action":
             return self._take_action(interpretation)
@@ -93,34 +186,117 @@ class ActionLanguageProcessor():
             return self._get_energy_consumption_timespan(interpretation)
         elif interpretation["intent"]["name"] == "energy_consumption_report":
             return self._get_energy_consumption_report(interpretation)
+        elif (interpretation["intent"]["name"] == "greet"):
+            return self._greet_(interpretation)
+        elif (interpretation["intent"]["name"] == "deny"):
+            return self._deny_(interpretation)
+        elif (interpretation["intent"]["name"] == "affirm"):
+            return self._affirm_(interpretation)
+        elif (interpretation["intent"]["name"] == "nicetomeeyou"):
+            return self._nicetomeeyou_(interpretation)        
+        elif (interpretation["intent"]["name"] == "react_positive"):
+            return self._react_positive_(interpretation)  
+        elif (interpretation["intent"]["name"] == "thanking"):
+            return self._thanking_(interpretation)  
+        elif (interpretation["intent"]["name"] == "goodbye"):
+            return self._goodbye_(interpretation)  
+        elif (interpretation["intent"]["name"] == "sos"):
+            return self._sos_(interpretation)
+        elif (interpretation["intent"]["name"] == "next_event"):
+            return self._get_next_event(interpretation)
+        elif (interpretation["intent"]["name"] == "first_last_event"):
+            return self._get_first_last_event(interpretation)
+        elif (interpretation["intent"]["name"] == "day_events"):
+            return self._get_day_events(interpretation)
+        else:
+            return self._greet_(interpretation)
+            
+        
+        
 
-    def _welcome_(self, interpretation):
-        return "a"#random.choice(self.welcome)
+    def _greet_(self, interpretation):     
+        return random.choice(self.welcome)
     def _affirm_(self, interpretation):
-        return "b"#random.choice(self.welcome)
+        return random.choice(self.affirm)
     def _deny_(self, interpretation):
-        return "c"#random.choice(self.welcome)
+        return random.choice(self.deny)
     def _nicetomeeyou_(self, interpretation):
-        return "d"#random.choice(self.welcome)
+        return random.choice(self.nicetomeeyou)
     def _react_positive_(self, interpretation):
-        return "e"#random.choice(self.welcome)
+        return random.choice(self.react_positive)
     def _thanking_(self, interpretation):
-        return "f"#random.choice(self.welcome)
+        return random.choice(self.thanking)
     def _goodbye_(self, interpretation):
-        return "j"#random.choice(self.welcome)
-
-    def _take_action_duration_(self, interpretation):
-        return "h"
-    def _take_action_variable_(self, interpretation):
-        return "k"
-    def _inform_(self, interpretation):
-        return "l"
-    def _repair_inform_(self, interpretation):
-        return "m"
-    def _air_quality_forecast_(self, interpretation):
-        return "n"
+        return random.choice(self.goodbye)
     def _sos_(self, interpretation):
-        return "o"
+        return random.choice(self.sos)
+
+
+    #calendar related intents
+    def _get_next_event(self, interpretation):
+        now = datetime.datetime.now()
+        time = None
+        if len(interpretation["entities"]) > 0:
+            for entity in interpretation["entities"]:
+                if entity["entity"] == "time":
+                    time = entity["value"]
+        if time == "today":
+            return get_next_event(service, now, 1)
+        elif time == "tomorrow":
+            return get_next_event(service, now, 2)
+        else:
+            return get_next_event(service, now)
+    def _get_first_last_event(self, interpretation):
+        now = datetime.datetime.now()
+        time = None
+        rank = None
+        if len(interpretation["entities"]) > 0:
+            for entity in interpretation["entities"]:
+                if entity["entity"] == "time":
+                    time = entity["value"]
+                if entity["entity"] == "rank":
+                    rank = entity["value"]
+        if rank == "first":
+            if time == "today" or time is None:
+                return get_next_event(service, now, 1)
+            elif time == "tomorrow":
+                return get_next_event(service, now, 2)
+            else:
+                return "Time not defined."
+        elif rank == "last":
+            if time == "today" or time is None:
+                return get_last_event(service, now, True)
+            elif time == "tomorrow":
+                return  get_last_event(service, now, False)
+            else:
+                return "Time not defined."
+        else:
+            return "Rank not defined."
+    def _get_day_events(self, interpretation):
+        now = datetime.datetime.now()
+        time = None
+        if len(interpretation["entities"]) > 0:
+            for entity in interpretation["entities"]:
+                if entity["entity"] == "time":
+                    time = entity["value"]
+        if time == "tomorrow":
+            return get_all_day_events(service, now, False)
+        else:
+            return get_all_day_events(service, now, True)
+
+
+    #not done
+    def _take_action_duration_(self, interpretation):
+        return "Not implemented yet 1"
+    def _take_action_variable_(self, interpretation):
+        return "Not implemented yet 2"
+    def _inform_(self, interpretation):
+        return "Not implemented yet 3"
+    def _repair_inform_(self, interpretation):
+        return "Not implemented yet 4"
+    def _air_quality_forecast_(self, interpretation):
+        return "Not implemented yet 5"
+
 
 
         
@@ -143,7 +319,7 @@ class ActionLanguageProcessor():
             
         answer = collection.aggregate([{ "$match": { "Fact Category": "eco" } },{ "$sample": { "size": 1 } }])
         fact = [tmp for tmp in answer][0]
-        return fact['Fact'] 
+        return fact['Fact']
         #answer.parse()
         
 
@@ -452,6 +628,16 @@ if __name__ == "__main__":
 
     utterance = "what is my energy consumption report of the last three years"
     #utterance = "can you give me air quality of last week ?"
+
+    # utterance = "what is my consumption these last two weeks"
+    # utterance = "can you give me air quality of last week ?"
+    utterance = "turn off the living room light"
+    utterance = "what is my consumption these last two weeks"
+    utterance = "can you give me air quality of last week ?"
+    #utterance = "turn off the living room light"
+    utterance = "what's my next event?"
+    utterance = "what's my agenda for today?"
+    utterance = "what's my last event tomorrow?"
 
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))

@@ -138,14 +138,14 @@ class MainWindow():
         
     def getSpeech(self):
         text = self.SpeechtoText()
-        time.sleep(5)
+        #time.sleep(1)
         self.askAlana(text)
         
         
     def askAlana(self,text):
 
         #text=self.variable1.get()
-        data = {'user_id': 'test-user', 'question': text, 'session_id': 'someonearoundthecorner', 'projectId': 'CA2020', 'overrides': {'BOT_LIST': bot_list_ , 'PRIORITY_BOTS': [prio_bot_list_]}}
+        data = {'user_id': 'test-user', 'question': text, 'session_id': 'someonearoundthecornerSSSS', 'projectId': 'CA2020', 'overrides': {'BOT_LIST': bot_list_ , 'PRIORITY_BOTS': [prio_bot_list_]}}
         #data = {'user_id': 'test-user', 'question': text, 'session_id': 'someonearoundthecorner', 'projectId': 'CA2020', 'overrides': {'BOT_LIST': bot_list_ , 'PRIORITY_BOTS': [prio_bot_list_, 'coherence_bot']}}
         
         r= requests.post(url='http://52.56.181.83:5000', json=data)
@@ -221,10 +221,12 @@ class MainWindow():
             #print('[search edureka : search youtube]')
             print('Want to speak to Alana?')
             try:
-                r3.adjust_for_ambient_noise(source, duration = 2 )
-                #r3.energy_threshold = 1
-        
-                audio = r3.listen(source)
+                
+                r3.adjust_for_ambient_noise(source,duration = 1)
+                #r3.energy_threshold = 50
+                #r3.dynamic_energy_threshold = False
+                print("Speak")
+                audio = r3.listen(source, timeout= 5)
                 
             except sr.UnknownValueError:
                 print('error')
@@ -232,12 +234,13 @@ class MainWindow():
                 print('failed'.format(e))
                 
         #print(r3.recognize_google(audio))
-        output3=r3.recognize_google(audio)
+        output3=r3.recognize_google(audio, language = 'en-GB', show_all = True)
+        output4 = output3['alternative'][0]['transcript']
         
+        #print(output3)
+        print(output4)
         
-        print(output3)
-        
-        return output3
+        return output4
     
 
 #----------------------------------------------------------------------
