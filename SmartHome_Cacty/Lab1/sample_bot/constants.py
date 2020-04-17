@@ -31,7 +31,7 @@ API_KEY = "dc7cf06b49047ee83091c9c350abcf80db6fbd43"
 API_URL = f"https://api.waqi.info/feed/edinburgh/?token={API_KEY}"
 
 ## DATASETs PARAMS
-DATASETS_FOLDER = os.path.join(os.getcwd(),"/home/osboxes/Documents/F21CA_SmartHome/SmartHome_Interface/Data_Files")
+DATASETS_FOLDER = os.path.join(os.getcwd(),"../../../SmartHome_Interface/Data_Files")
 
 AIR_QUALITY_DATASET_FILE_NAME = "air_quality/edi_air_quality.csv"
 CONSUMPTION_DATASET_FILE_NAME = "energy_consumption/energy_consumption.pkl"
