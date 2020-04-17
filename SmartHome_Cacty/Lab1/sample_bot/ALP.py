@@ -430,8 +430,6 @@ class ActionLanguageProcessor():
 
         df = CONSUMPTION_DATASET.copy()
 
-        print(df.head())
-
         #Finds the timestamp between the limit dates when querying past consumption
         timestamps_conditioned = np.array( #converts timestamps in booleans if 
             [
@@ -550,7 +548,7 @@ if __name__ == "__main__":
 
     #utterance = "How good is the air right now?"
 
-    # utterance = "what is my energy consumption report of the last three years"
+    #utterance = "what is my energy consumption report of the last three years"
     #utterance = "can you give me air quality of last week ?"
 
     # utterance = "what is my consumption these last two weeks"
@@ -563,7 +561,7 @@ if __name__ == "__main__":
     # utterance = "what's my agenda for today?"
     # utterance = "what's my last event tomorrow?"
 
-    utterance = "Can you give me my energy consumption report ?"
+    utterance = "What was my energy consumption today ?"
 
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
