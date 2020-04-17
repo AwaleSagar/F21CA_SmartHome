@@ -11,10 +11,10 @@ pipeline:
     min_ngram: 1
     max_ngram: 4
   - name: DIETClassifier
-    epochs: 700
+    epochs: 250
   - name: EntitySynonymMapper
   - name: ResponseSelector
-    epochs: 300
+    epochs: 200
   - name: DucklingHTTPExtractor
     url: "http://localhost:8000"
     # dimensions to extract
