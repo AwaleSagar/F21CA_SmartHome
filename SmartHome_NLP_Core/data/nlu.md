@@ -749,6 +749,63 @@
 - tell me my energy consumption report of the [last](hierarchy_number) [ten](number) [months](time)
 
 
+## intent: next_event
+- what's my next event
+- what is my next event
+- when is my next event
+- when is my next meeting
+- when is my next event [today](time)
+- when is my next meeting [tomorrow](time)
+- when is my next event [tomorrow](time)
+- when is my next meeting [today](time)
+- do I have another event [today](time)
+- do I have another event [tomorrow](time)
+- do I have another event
+- do I have another meeting [today](time)
+- do I have another meeting [tomorrow](time)
+- do I have another meeting
+- please give me my next event ?
+- can you let me know my next event ?
+- how about my next event ?
+
+## intent: first_last_event
+- when is my [first](rank) event [today](time)
+- when is my [first](rank) event [tomorrow](time)
+- when is my [first](rank) event
+- when is my [last](rank) event [today](time)
+- when is my [last](rank) event [tomorrow](time)
+- when is my [last](rank) event
+- when is my [first](rank) meeting [today](time)
+- when is my [first](rank) meeting [tomorrow](time)
+- when is my [first](rank) meeting
+- when is my [last](rank) meeting [today](time)
+- when is my [last](rank) meeting [tomorrow](time)
+- when is my [last](rank) meeting
+- what's my [last](rank) event [tomorrow](time)
+- what is my [last](rank) event [tommorrow](time)
+- what's my [last](rank) event [today](time)
+- what is my [last](rank) event [today](time)
+- what is my [end](rank) event [today](time)
+- what's my [end](rank) event [today](time)
+- what's my [first](rank) event [tomorrow](time)
+- what is my [first](rank) event [tomorrow](time)
+- what's my [first](rank) event [today](time)
+- what is my [first](rank) event [today](time)
+- what is my [start](rank) event [today](time)
+- what's my [start](rank) event [today](time)
+
+## intent: day_events
+- what is planned for [today](time)
+- what is planned for [tomorrow](time)
+- do I have any meetings [today](time)
+- do I have any meetings [tomorrow](time)
+- what's my agenda for [tomorrow](time)
+- what is my agenda for [tomorrow](time)
+- what's my agenda for [today](time)
+- what are all my events [today](time)
+- what are all my events [tomorrow](time)
+
+
 ## intent:nicetomeeyou
 - Delighted to make your acquaintance.
 - Feels great to see you!

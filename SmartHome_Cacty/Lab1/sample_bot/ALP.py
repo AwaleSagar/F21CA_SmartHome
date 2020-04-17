@@ -13,6 +13,8 @@ from pprint import pprint
 import os
 import numpy as np
 
+from rasa.nlu.model import Interpreter
+
 # OWN FILES IMPORTS
 from useful_functions import get_date_from_interpretation, two_arrays_random_permutation, get_air_quality_message
 from constants import *
@@ -20,7 +22,6 @@ from constants import *
 
 from calendarEvents.setting_google_api import service
 from calendarEvents.read_events import get_next_event, get_all_day_events, get_last_event
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 ### TEMPORARY TO TEST BEFORE PLUGING TO DATABASE
 from rasa.nlu.model import Interpreter
@@ -38,7 +39,7 @@ import random
 #-------------------------------------------------
 #MODEL_ADDR = "./NLU/models/20200331-192950_2/nlu"
 #MODEL_ADDR = "/home/osboxes/Documents/F21CA_SmartHome/SmartHome_NLP_Core/models/nlu"
-MODEL_ADDR = "/home/jalex/Documents/HWU/Natural_Language_Processing/F21CA_SmartHome/SmartHome_NLP_Core/models/nlu_calendar"
+MODEL_ADDR = "/home/osboxes/Downloads/F21CA_SmartHome/SmartHome_NLP_Core/models/nlu-20200417-100725/nlu"
 #-------------------------------------------------
 
 
@@ -116,7 +117,7 @@ class ActionLanguageProcessor():
         # I created a database called simple_appliances_db
         self.db = self.DB_CLIENT.shome
         # loading the model from one directory or zip file
-        # self.interpreter = Interpreter.load(model_file)
+        self.interpreter = Interpreter.load(model_file)
         self.welcome = ["Hello, nice to meet you! How can I help you?","Nice to meet you!","Welcome to Alana Eco bot application. Can I help you?","Hi! How are you?","Welcome to Alana app.","Hi, How can I help you?"]
         self.affirm = ["Nice !","Okay !","Good !"]
         self.deny = ["Ok", "No worries"]
@@ -161,12 +162,12 @@ class ActionLanguageProcessor():
 
     def analyse_utterance(self, utterance="hello"):
         # parsing the utterance
-        # interpretation = self.interpreter.parse(utterance)
+        interpretation = self.interpreter.parse(utterance)
 
-        url = "http://18.219.152.221:5005/model/parse"
-        payload = "{\"text\":" + "\"{}\"".format(utterance) +"}"
-        r = requests.request("POST", url, data = payload)
-        interpretation = r.json()
+        # url = "http://18.219.152.221:5005/model/parse"
+        # payload = "{\"text\":" + "\"{}\"".format(utterance) +"}"
+        # r = requests.request("POST", url, data = payload)
+        # interpretation = r.json()
         
         #pprint(interpretation)
         
@@ -506,7 +507,7 @@ class ActionLanguageProcessor():
 
         df = CONSUMPTION_DATASET.copy()
 
-        
+        print(df.head())
 
         #Finds the timestamp between the limit dates when querying past consumption
         timestamps_conditioned = np.array( #converts timestamps in booleans if 
@@ -519,6 +520,8 @@ class ActionLanguageProcessor():
 
         max_light = df.iloc[df[df["appliance"].str.contains('light',case=False)]["sum"].idxmax()]
         max_heating = df.iloc[df[df["appliance"].str.contains('heat',case=False)]["sum"].idxmax()]
+
+        print(max_light, max_heating)
 
         collection = self.db.homeio
 
@@ -626,18 +629,18 @@ if __name__ == "__main__":
 
     #utterance = "How good is the air right now?"
 
-    utterance = "what is my energy consumption report of the last three years"
+    # utterance = "what is my energy consumption report of the last three years"
     #utterance = "can you give me air quality of last week ?"
 
     # utterance = "what is my consumption these last two weeks"
     # utterance = "can you give me air quality of last week ?"
-    utterance = "turn off the living room light"
-    utterance = "what is my consumption these last two weeks"
-    utterance = "can you give me air quality of last week ?"
-    #utterance = "turn off the living room light"
-    utterance = "what's my next event?"
-    utterance = "what's my agenda for today?"
-    utterance = "what's my last event tomorrow?"
+    # utterance = "turn off the living room light"
+    utterance = "what is my energy consumption last week"
+    # utterance = "can you give me air quality of last week ?"
+    # utterance = "turn off the living room light"
+    # utterance = "what's my next event?"
+    # utterance = "what's my agenda for today?"
+    # utterance = "what's my last event tomorrow?"
 
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
