@@ -1,0 +1,1232 @@
+[
+  {
+    "text": "hello, my name is Tom",
+    "entities": [
+      {
+        "start": 18,
+        "end": 21,
+        "value": "Tom",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "hi i'm Amanda",
+    "entities": [
+      {
+        "start": 7,
+        "end": 13,
+        "value": "Amanda",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "i'd like to brighten the light in theliving room",
+    "entities": [
+      {
+        "start": 12,
+        "end": 20,
+        "value": "brighten",
+        "entity": "unit"
+      },
+      {
+        "start": 25,
+        "end": 30,
+        "value": "light",
+        "entity": "appliance"
+      },
+      {
+        "start": 37,
+        "end": 43,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 12,
+        "end": 20,
+        "extractor": "DIETClassifier",
+        "value": "brighten"
+      },
+      {
+        "entity": "appliance",
+        "start": 25,
+        "end": 30,
+        "extractor": "DIETClassifier",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "text": "can you increase the light intensity in theliving room",
+    "entities": [
+      {
+        "start": 8,
+        "end": 16,
+        "value": "increase",
+        "entity": "unit"
+      },
+      {
+        "start": 21,
+        "end": 26,
+        "value": "light",
+        "entity": "appliance"
+      },
+      {
+        "start": 43,
+        "end": 49,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 8,
+        "end": 16,
+        "extractor": "DIETClassifier",
+        "value": "increase"
+      },
+      {
+        "entity": "appliance",
+        "start": 21,
+        "end": 26,
+        "extractor": "DIETClassifier",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "text": "i'd like to turn down the heater in theliving room",
+    "entities": [
+      {
+        "start": 12,
+        "end": 21,
+        "value": "turn down",
+        "entity": "unit"
+      },
+      {
+        "start": 26,
+        "end": 32,
+        "value": "heater",
+        "entity": "appliance"
+      },
+      {
+        "start": 39,
+        "end": 45,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 12,
+        "end": 21,
+        "extractor": "DIETClassifier",
+        "value": "turn down"
+      },
+      {
+        "entity": "appliance",
+        "start": 26,
+        "end": 32,
+        "extractor": "DIETClassifier",
+        "value": "heater"
+      }
+    ]
+  },
+  {
+    "text": "how good was the air quality of the last three years",
+    "entities": [
+      {
+        "start": 36,
+        "end": 40,
+        "value": "last",
+        "entity": "hierarchy_number"
+      },
+      {
+        "start": 41,
+        "end": 46,
+        "value": "three",
+        "entity": "number"
+      },
+      {
+        "start": 47,
+        "end": 52,
+        "value": "years",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "good",
+        "start": 4,
+        "end": 8,
+        "extractor": "DIETClassifier",
+        "value": "good"
+      },
+      {
+        "entity": "hierarchy_number",
+        "start": 36,
+        "end": 40,
+        "extractor": "DIETClassifier",
+        "value": "last"
+      },
+      {
+        "entity": "number",
+        "start": 41,
+        "end": 46,
+        "extractor": "DIETClassifier",
+        "value": "three"
+      },
+      {
+        "entity": "time",
+        "start": 47,
+        "end": 52,
+        "extractor": "DIETClassifier",
+        "value": "years"
+      }
+    ]
+  },
+  {
+    "text": "will air be great tomorrow",
+    "entities": [
+      {
+        "start": 12,
+        "end": 17,
+        "value": "great",
+        "entity": "good"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "good",
+        "start": 12,
+        "end": 17,
+        "extractor": "DIETClassifier",
+        "value": "great"
+      },
+      {
+        "entity": "time",
+        "start": 18,
+        "end": 26,
+        "extractor": "DIETClassifier",
+        "value": "tomorrow"
+      }
+    ]
+  },
+  {
+    "text": "Please call 911",
+    "entities": [
+      {
+        "start": 12,
+        "end": 15,
+        "value": "911",
+        "entity": "priority"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "number",
+        "start": 12,
+        "end": 15,
+        "extractor": "DIETClassifier",
+        "value": "911"
+      }
+    ]
+  },
+  {
+    "text": "Delighted to make your acquaintance.",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "appliance",
+        "start": 0,
+        "end": 9,
+        "extractor": "DIETClassifier",
+        "value": "Delighted"
+      }
+    ]
+  },
+  {
+    "text": "hi im Sheldon",
+    "entities": [
+      {
+        "start": 6,
+        "end": 13,
+        "value": "Sheldon",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "i am Karen",
+    "entities": [
+      {
+        "start": 5,
+        "end": 10,
+        "value": "Karen",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I have used it in the past",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "rank",
+        "start": 22,
+        "end": 26,
+        "extractor": "DIETClassifier",
+        "value": "past"
+      }
+    ]
+  },
+  {
+    "text": "can you dim the light in theliving room",
+    "entities": [
+      {
+        "start": 8,
+        "end": 11,
+        "value": "dim",
+        "entity": "unit"
+      },
+      {
+        "start": 16,
+        "end": 21,
+        "value": "light",
+        "entity": "appliance"
+      },
+      {
+        "start": 28,
+        "end": 34,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 8,
+        "end": 11,
+        "extractor": "DIETClassifier",
+        "value": "dim"
+      },
+      {
+        "entity": "appliance",
+        "start": 16,
+        "end": 21,
+        "extractor": "DIETClassifier",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "text": "i'd like to decrease the light intensity in theliving room",
+    "entities": [
+      {
+        "start": 12,
+        "end": 20,
+        "value": "decrease",
+        "entity": "unit"
+      },
+      {
+        "start": 25,
+        "end": 30,
+        "value": "light",
+        "entity": "appliance"
+      },
+      {
+        "start": 47,
+        "end": 53,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 12,
+        "end": 20,
+        "extractor": "DIETClassifier",
+        "value": "decrease"
+      },
+      {
+        "entity": "appliance",
+        "start": 25,
+        "end": 30,
+        "extractor": "DIETClassifier",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "text": "i'd like to increase the light intensity in theliving room",
+    "entities": [
+      {
+        "start": 12,
+        "end": 20,
+        "value": "increase",
+        "entity": "unit"
+      },
+      {
+        "start": 25,
+        "end": 30,
+        "value": "light",
+        "entity": "appliance"
+      },
+      {
+        "start": 47,
+        "end": 53,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 12,
+        "end": 20,
+        "extractor": "DIETClassifier",
+        "value": "increase"
+      },
+      {
+        "entity": "appliance",
+        "start": 25,
+        "end": 30,
+        "extractor": "DIETClassifier",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "text": "how good was the air quality of the last 4 years",
+    "entities": [
+      {
+        "start": 36,
+        "end": 40,
+        "value": "last",
+        "entity": "hierarchy_number"
+      },
+      {
+        "start": 41,
+        "end": 42,
+        "value": "4",
+        "entity": "number"
+      },
+      {
+        "start": 43,
+        "end": 48,
+        "value": "years",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "good",
+        "start": 4,
+        "end": 8,
+        "extractor": "DIETClassifier",
+        "value": "good"
+      },
+      {
+        "entity": "hierarchy_number",
+        "start": 36,
+        "end": 40,
+        "extractor": "DIETClassifier",
+        "value": "last"
+      },
+      {
+        "entity": "number",
+        "start": 41,
+        "end": 42,
+        "extractor": "DIETClassifier",
+        "value": "4"
+      },
+      {
+        "entity": "time",
+        "start": 43,
+        "end": 48,
+        "extractor": "DIETClassifier",
+        "value": "years"
+      }
+    ]
+  },
+  {
+    "text": "will air quality be good in future days",
+    "entities": [
+      {
+        "start": 20,
+        "end": 24,
+        "value": "good",
+        "entity": "good"
+      },
+      {
+        "start": 28,
+        "end": 34,
+        "value": "future",
+        "entity": "hierarchy_number"
+      },
+      {
+        "start": 35,
+        "end": 39,
+        "value": "days",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "good",
+        "start": 20,
+        "end": 24,
+        "extractor": "DIETClassifier",
+        "value": "good"
+      },
+      {
+        "entity": "time",
+        "start": 35,
+        "end": 39,
+        "extractor": "DIETClassifier",
+        "value": "days"
+      }
+    ]
+  },
+  {
+    "text": "There is a fire in the house",
+    "entities": [
+      {
+        "start": 11,
+        "end": 15,
+        "value": "fire",
+        "entity": "priority"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "time",
+        "start": 23,
+        "end": 28,
+        "extractor": "DIETClassifier",
+        "value": "house"
+      }
+    ]
+  },
+  {
+    "text": "today was a nice day",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "good",
+        "start": 12,
+        "end": 16,
+        "extractor": "DIETClassifier",
+        "value": "nice"
+      },
+      {
+        "entity": "time",
+        "start": 17,
+        "end": 20,
+        "extractor": "DIETClassifier",
+        "value": "day"
+      }
+    ]
+  },
+  {
+    "text": "hello everybody",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "location",
+        "start": 6,
+        "end": 15,
+        "extractor": "DIETClassifier",
+        "value": "everybody"
+      }
+    ]
+  },
+  {
+    "text": "Ok let's start",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "rank",
+        "start": 9,
+        "end": 14,
+        "extractor": "DIETClassifier",
+        "value": "start"
+      }
+    ]
+  },
+  {
+    "text": "no i don't like that",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "action",
+        "start": 5,
+        "end": 8,
+        "extractor": "DIETClassifier",
+        "value": "don"
+      }
+    ]
+  },
+  {
+    "text": "can you brighten the light in theliving room",
+    "entities": [
+      {
+        "start": 8,
+        "end": 16,
+        "value": "brighten",
+        "entity": "unit"
+      },
+      {
+        "start": 21,
+        "end": 26,
+        "value": "light",
+        "entity": "appliance"
+      },
+      {
+        "start": 33,
+        "end": 39,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 8,
+        "end": 16,
+        "extractor": "DIETClassifier",
+        "value": "brighten"
+      },
+      {
+        "entity": "appliance",
+        "start": 21,
+        "end": 26,
+        "extractor": "DIETClassifier",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "text": "i'd like to turn up the heater in theliving room",
+    "entities": [
+      {
+        "start": 12,
+        "end": 19,
+        "value": "turn up",
+        "entity": "unit"
+      },
+      {
+        "start": 24,
+        "end": 30,
+        "value": "heater",
+        "entity": "appliance"
+      },
+      {
+        "start": 37,
+        "end": 43,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 12,
+        "end": 19,
+        "extractor": "DIETClassifier",
+        "value": "turn up"
+      },
+      {
+        "entity": "appliance",
+        "start": 24,
+        "end": 30,
+        "extractor": "DIETClassifier",
+        "value": "heater"
+      }
+    ]
+  },
+  {
+    "text": "how can i save energy for my light",
+    "entities": [
+      {
+        "start": 10,
+        "end": 14,
+        "value": "save",
+        "entity": "info"
+      },
+      {
+        "start": 29,
+        "end": 34,
+        "value": "light",
+        "entity": "appliance"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "info",
+        "start": 10,
+        "end": 21,
+        "extractor": "DIETClassifier",
+        "value": "save energy"
+      },
+      {
+        "entity": "appliance",
+        "start": 29,
+        "end": 34,
+        "extractor": "DIETClassifier",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "text": "what are the measures of air quality today",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "time",
+        "start": 37,
+        "end": 42,
+        "extractor": "DIETClassifier",
+        "value": "today"
+      }
+    ]
+  },
+  {
+    "text": "how good air quality was last year",
+    "entities": [
+      {
+        "start": 4,
+        "end": 8,
+        "value": "good",
+        "entity": "good"
+      },
+      {
+        "start": 25,
+        "end": 29,
+        "value": "last",
+        "entity": "hierarchy_number"
+      },
+      {
+        "start": 30,
+        "end": 34,
+        "value": "year",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "hierarchy_number",
+        "start": 25,
+        "end": 29,
+        "extractor": "DIETClassifier",
+        "value": "last"
+      },
+      {
+        "entity": "time",
+        "start": 30,
+        "end": 34,
+        "extractor": "DIETClassifier",
+        "value": "year"
+      }
+    ]
+  },
+  {
+    "text": "will we have nice air quality for next week",
+    "entities": [
+      {
+        "start": 34,
+        "end": 38,
+        "value": "next",
+        "entity": "hierarchy_number"
+      },
+      {
+        "start": 39,
+        "end": 43,
+        "value": "week",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "good",
+        "start": 13,
+        "end": 17,
+        "extractor": "DIETClassifier",
+        "value": "nice"
+      },
+      {
+        "entity": "hierarchy_number",
+        "start": 34,
+        "end": 38,
+        "extractor": "DIETClassifier",
+        "value": "next"
+      },
+      {
+        "entity": "time",
+        "start": 39,
+        "end": 43,
+        "extractor": "DIETClassifier",
+        "value": "week"
+      }
+    ]
+  },
+  {
+    "text": "I need help its urgent",
+    "entities": [
+      {
+        "start": 7,
+        "end": 11,
+        "value": "help",
+        "entity": "signal"
+      },
+      {
+        "start": 16,
+        "end": 22,
+        "value": "urgent",
+        "entity": "priority"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "signal",
+        "start": 7,
+        "end": 11,
+        "extractor": "DIETClassifier",
+        "value": "help"
+      }
+    ]
+  },
+  {
+    "text": "I am in pain please help",
+    "entities": [
+      {
+        "start": 8,
+        "end": 12,
+        "value": "pain",
+        "entity": "priority"
+      },
+      {
+        "start": 20,
+        "end": 24,
+        "value": "help",
+        "entity": "signal"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "signal",
+        "start": 20,
+        "end": 24,
+        "extractor": "DIETClassifier",
+        "value": "help"
+      }
+    ]
+  },
+  {
+    "text": "can you turn up the heater in theliving room",
+    "entities": [
+      {
+        "start": 8,
+        "end": 15,
+        "value": "turn up",
+        "entity": "unit"
+      },
+      {
+        "start": 20,
+        "end": 26,
+        "value": "heater",
+        "entity": "appliance"
+      },
+      {
+        "start": 33,
+        "end": 39,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 8,
+        "end": 15,
+        "extractor": "DIETClassifier",
+        "value": "turn up"
+      },
+      {
+        "entity": "appliance",
+        "start": 20,
+        "end": 26,
+        "extractor": "DIETClassifier",
+        "value": "heater"
+      }
+    ]
+  },
+  {
+    "text": "how great will air be next day",
+    "entities": [
+      {
+        "start": 4,
+        "end": 9,
+        "value": "great",
+        "entity": "good"
+      },
+      {
+        "start": 22,
+        "end": 26,
+        "value": "next",
+        "entity": "hierarchy_number"
+      },
+      {
+        "start": 27,
+        "end": 30,
+        "value": "day",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "please help me its an emergency",
+    "entities": [
+      {
+        "start": 7,
+        "end": 11,
+        "value": "help",
+        "entity": "signal"
+      },
+      {
+        "start": 22,
+        "end": 31,
+        "value": "emergency",
+        "entity": "priority"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "signal",
+        "start": 7,
+        "end": 11,
+        "extractor": "DIETClassifier",
+        "value": "help"
+      },
+      {
+        "entity": "info",
+        "start": 22,
+        "end": 31,
+        "extractor": "DIETClassifier",
+        "value": "emergency"
+      }
+    ]
+  },
+  {
+    "text": "I need help its an emergency",
+    "entities": [
+      {
+        "start": 7,
+        "end": 11,
+        "value": "help",
+        "entity": "signal"
+      },
+      {
+        "start": 19,
+        "end": 28,
+        "value": "emergency",
+        "entity": "priority"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "signal",
+        "start": 7,
+        "end": 11,
+        "extractor": "DIETClassifier",
+        "value": "help"
+      },
+      {
+        "entity": "info",
+        "start": 19,
+        "end": 28,
+        "extractor": "DIETClassifier",
+        "value": "emergency"
+      }
+    ]
+  },
+  {
+    "text": "i'd like to dim the light in theliving room",
+    "entities": [
+      {
+        "start": 12,
+        "end": 15,
+        "value": "dim",
+        "entity": "unit"
+      },
+      {
+        "start": 20,
+        "end": 25,
+        "value": "light",
+        "entity": "appliance"
+      },
+      {
+        "start": 32,
+        "end": 38,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 12,
+        "end": 15,
+        "extractor": "DIETClassifier",
+        "value": "dim"
+      },
+      {
+        "entity": "appliance",
+        "start": 20,
+        "end": 25,
+        "extractor": "DIETClassifier",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "text": "can you decrease the light intensity in theliving room",
+    "entities": [
+      {
+        "start": 8,
+        "end": 16,
+        "value": "decrease",
+        "entity": "unit"
+      },
+      {
+        "start": 21,
+        "end": 26,
+        "value": "light",
+        "entity": "appliance"
+      },
+      {
+        "start": 43,
+        "end": 49,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 8,
+        "end": 16,
+        "extractor": "DIETClassifier",
+        "value": "decrease"
+      },
+      {
+        "entity": "appliance",
+        "start": 21,
+        "end": 26,
+        "extractor": "DIETClassifier",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "text": "can you turn down the heater in theliving room",
+    "entities": [
+      {
+        "start": 8,
+        "end": 17,
+        "value": "turn down",
+        "entity": "unit"
+      },
+      {
+        "start": 22,
+        "end": 28,
+        "value": "heater",
+        "entity": "appliance"
+      },
+      {
+        "start": 35,
+        "end": 41,
+        "value": "living",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "unit",
+        "start": 8,
+        "end": 17,
+        "extractor": "DIETClassifier",
+        "value": "turn down"
+      },
+      {
+        "entity": "appliance",
+        "start": 22,
+        "end": 28,
+        "extractor": "DIETClassifier",
+        "value": "heater"
+      }
+    ]
+  },
+  {
+    "text": "can you help me save energy with my heating",
+    "entities": [
+      {
+        "start": 16,
+        "end": 20,
+        "value": "save",
+        "entity": "info"
+      },
+      {
+        "start": 36,
+        "end": 43,
+        "value": "heating",
+        "entity": "appliance"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "signal",
+        "start": 8,
+        "end": 12,
+        "extractor": "DIETClassifier",
+        "value": "help"
+      },
+      {
+        "entity": "info",
+        "start": 16,
+        "end": 20,
+        "extractor": "DIETClassifier",
+        "value": "save"
+      },
+      {
+        "entity": "appliance",
+        "start": 36,
+        "end": 43,
+        "extractor": "DIETClassifier",
+        "value": "heating"
+      }
+    ]
+  },
+  {
+    "text": "how is air quality today",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "time",
+        "start": 19,
+        "end": 24,
+        "extractor": "DIETClassifier",
+        "value": "today"
+      }
+    ]
+  },
+  {
+    "text": "code red",
+    "entities": [
+      {
+        "start": 0,
+        "end": 8,
+        "value": "code red",
+        "entity": "priority"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I need help as soon as possible",
+    "entities": [
+      {
+        "start": 7,
+        "end": 11,
+        "value": "help",
+        "entity": "signal"
+      },
+      {
+        "start": 12,
+        "end": 31,
+        "value": "as soon as possible",
+        "entity": "priority"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "signal",
+        "start": 7,
+        "end": 11,
+        "extractor": "DIETClassifier",
+        "value": "help"
+      },
+      {
+        "entity": "action",
+        "start": 15,
+        "end": 19,
+        "extractor": "DIETClassifier",
+        "value": "soon"
+      }
+    ]
+  },
+  {
+    "text": "tell me my energy consumption report of the last seven days",
+    "entities": [
+      {
+        "start": 44,
+        "end": 48,
+        "value": "last",
+        "entity": "hierarchy_number"
+      },
+      {
+        "start": 49,
+        "end": 54,
+        "value": "seven",
+        "entity": "number"
+      },
+      {
+        "start": 55,
+        "end": 59,
+        "value": "days",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "hierarchy_number",
+        "start": 44,
+        "end": 48,
+        "extractor": "DIETClassifier",
+        "value": "last"
+      },
+      {
+        "entity": "time",
+        "start": 55,
+        "end": 59,
+        "extractor": "DIETClassifier",
+        "value": "days"
+      }
+    ]
+  },
+  {
+    "text": "i am happy today",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "time",
+        "start": 11,
+        "end": 16,
+        "extractor": "DIETClassifier",
+        "value": "today"
+      }
+    ]
+  }
+]

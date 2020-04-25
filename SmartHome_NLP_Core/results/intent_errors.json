@@ -1,0 +1,394 @@
+[
+  {
+    "text": "Sweet",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.972098171710968
+    }
+  },
+  {
+    "text": "done",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.6371657848358154
+    }
+  },
+  {
+    "text": "hm, i'd like that",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "react_positive",
+      "confidence": 0.37846657633781433
+    }
+  },
+  {
+    "text": "Please call 911",
+    "intent": "sos",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.32202017307281494
+    }
+  },
+  {
+    "text": "I am glad he introduced us.",
+    "intent": "nicetomeeyou",
+    "intent_prediction": {
+      "name": "sos",
+      "confidence": 0.3746611773967743
+    }
+  },
+  {
+    "text": "Looks nice",
+    "intent": "react_positive",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.984006404876709
+    }
+  },
+  {
+    "text": "such a great demo",
+    "intent": "react_positive",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5949106812477112
+    }
+  },
+  {
+    "text": "see ya",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9951537251472473
+    }
+  },
+  {
+    "text": "greet",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9714592695236206
+    }
+  },
+  {
+    "text": "hai",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "react_positive",
+      "confidence": 0.44001179933547974
+    }
+  },
+  {
+    "text": "i am Karen",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.6899680495262146
+    }
+  },
+  {
+    "text": "salut",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9670808911323547
+    }
+  },
+  {
+    "text": "yo",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.636401891708374
+    }
+  },
+  {
+    "text": "I have used it in the past",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "day_events",
+      "confidence": 0.2477450668811798
+    }
+  },
+  {
+    "text": "That would be great",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "repair_inform",
+      "confidence": 0.7666454911231995
+    }
+  },
+  {
+    "text": "a little",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "react_positive",
+      "confidence": 0.9032866358757019
+    }
+  },
+  {
+    "text": "fair enough",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "air_quality_today",
+      "confidence": 0.5795620083808899
+    }
+  },
+  {
+    "text": "sort of",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "sos",
+      "confidence": 0.2970702350139618
+    }
+  },
+  {
+    "text": "uh-huh",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.7621241807937622
+    }
+  },
+  {
+    "text": "There is a fire in the house",
+    "intent": "sos",
+    "intent_prediction": {
+      "name": "take_action_variable",
+      "confidence": 0.23932279646396637
+    }
+  },
+  {
+    "text": ":)",
+    "intent": "react_positive",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.7270604968070984
+    }
+  },
+  {
+    "text": "rasa is awesome",
+    "intent": "react_positive",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.3304382860660553
+    }
+  },
+  {
+    "text": "today was a nice day",
+    "intent": "react_positive",
+    "intent_prediction": {
+      "name": "air_quality_historical",
+      "confidence": 0.5233632922172546
+    }
+  },
+  {
+    "text": "jojojo",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.7002673745155334
+    }
+  },
+  {
+    "text": "konichiwa",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.8646695613861084
+    }
+  },
+  {
+    "text": "cool story bro",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "react_positive",
+      "confidence": 0.8052767515182495
+    }
+  },
+  {
+    "text": "how nice!",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "react_positive",
+      "confidence": 0.3284868001937866
+    }
+  },
+  {
+    "text": "very much",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "react_positive",
+      "confidence": 0.606777548789978
+    }
+  },
+  {
+    "text": "no i don't like that",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "take_action",
+      "confidence": 0.2233656942844391
+    }
+  },
+  {
+    "text": "what are the measures of air quality today",
+    "intent": "air_quality_today",
+    "intent_prediction": {
+      "name": "air_quality_historical",
+      "confidence": 0.4304462671279907
+    }
+  },
+  {
+    "text": "good evening",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "first_last_event",
+      "confidence": 0.32268959283828735
+    }
+  },
+  {
+    "text": "howdy",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.48406320810317993
+    }
+  },
+  {
+    "text": "i am!",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "react_positive",
+      "confidence": 0.4407229423522949
+    }
+  },
+  {
+    "text": "jo",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.957456111907959
+    }
+  },
+  {
+    "text": "yop",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8906759023666382
+    }
+  },
+  {
+    "text": "you got me, I accept, if you want me to",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "air_quality_forecast",
+      "confidence": 0.2667239010334015
+    }
+  },
+  {
+    "text": "do you have something else",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "air_quality_forecast",
+      "confidence": 0.3071100115776062
+    }
+  },
+  {
+    "text": "please help me its an emergency",
+    "intent": "sos",
+    "intent_prediction": {
+      "name": "get_info_energy",
+      "confidence": 0.3866056203842163
+    }
+  },
+  {
+    "text": ":D",
+    "intent": "react_positive",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9938717484474182
+    }
+  },
+  {
+    "text": "it's pretty cool",
+    "intent": "react_positive",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9880580306053162
+    }
+  },
+  {
+    "text": "tata",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5834123492240906
+    }
+  },
+  {
+    "text": "jop",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9949056506156921
+    }
+  },
+  {
+    "text": "merhaba",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.4900344908237457
+    }
+  },
+  {
+    "text": "sup",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9811930656433105
+    }
+  },
+  {
+    "text": "yoo",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.3442930579185486
+    }
+  },
+  {
+    "text": "yosh",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5110920071601868
+    }
+  },
+  {
+    "text": "not bad",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "react_positive",
+      "confidence": 0.39734068512916565
+    }
+  },
+  {
+    "text": "code red",
+    "intent": "sos",
+    "intent_prediction": {
+      "name": "react_positive",
+      "confidence": 0.7821796536445618
+    }
+  },
+  {
+    "text": "that was a great interaction",
+    "intent": "react_positive",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5143758058547974
+    }
+  }
+]
