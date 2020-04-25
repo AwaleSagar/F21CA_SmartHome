@@ -92,7 +92,7 @@ class ActionLanguageProcessor():
         # r = requests.request("POST", url, data = payload)
         # interpretation = r.json()
         
-        #pprint(interpretation)
+        pprint(interpretation)
         
         if interpretation["intent"]['name'] == "take_action":
             return self._take_action(interpretation)
@@ -561,7 +561,7 @@ if __name__ == "__main__":
     # utterance = "what's my agenda for today?"
     # utterance = "what's my last event tomorrow?"
 
-    utterance = "What was my energy consumption today ?"
+    utterance = "What was my energy consumption yesterday ?"
 
     alp = ActionLanguageProcessor(mongodb_url=MONGODB_URL, model_file=MODEL_ADDR)
     print(alp.analyse_utterance(utterance))
