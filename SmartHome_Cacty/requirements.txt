@@ -101,7 +101,7 @@ heapdict==1.0.0
 hpack==3.0.0
 html5lib==1.0.1
 httpcore==0.3.0
-httplib2==0.17.0
+httplib2==0.18.0
 httptools==0.0.13
 humanfriendly==4.18
 hyperframe==5.2.0
