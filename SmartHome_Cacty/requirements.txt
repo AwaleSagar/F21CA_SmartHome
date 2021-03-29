@@ -217,7 +217,7 @@ pydot==1.4.1
 pyflakes==2.1.1
 pygame==1.9.6
 pyglet==1.3.2
-Pygments==2.4.2
+Pygments==2.7.4
 pygobject==3.28.3
 PyJWT==1.7.1
 pykwalify==1.7.0
