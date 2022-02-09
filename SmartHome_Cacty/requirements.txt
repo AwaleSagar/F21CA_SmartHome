@@ -312,7 +312,7 @@ tensorflow==1.15.0
 tensorflow-datasets==2.0.0
 tensorflow-estimator==1.15.1
 tensorflow-gan==2.0.0
-tensorflow-gpu==2.0.0
+tensorflow-gpu==2.5.3
 tensorflow-hub==0.7.0
 tensorflow-metadata==0.21.0
 tensorflow-probability==0.7.0
