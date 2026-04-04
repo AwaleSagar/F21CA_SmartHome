@@ -323,7 +323,7 @@ testpath==0.4.2
 tflearn==0.3.2
 thinc==7.4.0
 toolz==0.9.0
-tornado==5.1.1
+tornado==6.5.5
 tqdm==4.43.0
 traitlets==4.3.2
 twilio==6.35.3
