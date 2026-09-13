@@ -1,22 +1,14 @@
-cachetools==4.1.0
-certifi==2020.4.5.1
-chardet==3.0.4
-google-api-core==1.16.0
-google-api-python-client==1.8.0
-google-auth==1.13.1
-google-auth-httplib2==0.0.3
-google-auth-oauthlib==0.4.1
-googleapis-common-protos==1.51.0
-httplib2==0.17.1
-idna==2.9
-oauthlib==3.1.0
-protobuf==3.11.3
-pyasn1==0.4.8
-pyasn1-modules==0.2.8
-pytz==2019.3
-requests==2.23.0
-requests-oauthlib==1.3.0
-rsa==4.0
-six==1.14.0
-uritemplate==3.0.1
-urllib3==1.25.8
+# Direct dependencies of the Google Calendar helper (read_events.py,
+# setting_google_api.py).
+#
+# Derived from the imports actually present here: googleapiclient (from
+# google-api-python-client) and google_auth_oauthlib. The previous contents
+# pinned 22 packages, 20 of which were transitive dependencies of these two
+# (cachetools, certifi, chardet, google-api-core, googleapis-common-protos,
+# httplib2, idna, oauthlib, protobuf, pyasn1, pytz, requests, rsa, six,
+# uritemplate, urllib3, ...). Pinning transitive dependencies at their 2020
+# versions is what pulled in a large number of advisories; pip resolves them
+# correctly from the two direct requirements below.
+
+google-api-python-client
+google-auth-oauthlib

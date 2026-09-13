@@ -1,6 +1,26 @@
-tensorflow==1.15.0
-google-auth==1.10.1
-prompt-toolkit==2.0.10
-questionary==1.4.0
-SQLAlchemy==1.3.12
-urllib3==1.25.7
+# Direct dependencies of the Lab1 sample bot (bot.py, ALP.py,
+# useful_functions.py, rasa_nlu_tutorial_bot_check.py).
+#
+# Derived from the imports actually present in this directory. The previous
+# contents were a partial environment freeze (tensorflow, google-auth,
+# prompt-toolkit, questionary, SQLAlchemy, urllib3) - all of those are
+# transitive dependencies of rasa rather than direct imports of this code,
+# so they are resolved by pip instead of being pinned here.
+
+# --- Conversational core (Rasa 1.x API - see ../../requirements.txt) ---
+rasa==1.6.1
+
+# --- Web API ---
+Flask
+Flask-RESTful
+
+# --- Data / storage ---
+numpy
+pandas
+pymongo
+
+# --- Parsing helpers ---
+word2number
+
+# --- HTTP ---
+requests
