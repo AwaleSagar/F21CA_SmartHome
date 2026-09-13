@@ -347,7 +347,11 @@ unicodecsv==0.14.1
 Unidecode==1.1.1
 uritemplate==3.0.1
 urllib3==1.24.2
--e git+https://2c5d8eb8de9f2f371cabfd986403d40363197c62:x-oauth-basic@github.com/WattSocialBot/utils.git@556becb171b75bde37c4073ee5496a3333f3be3f#egg=utils
+# REDACTED: this line embedded a GitHub OAuth token in a git+https URL to
+# the private repo WattSocialBot/utils. The token has been removed; it must
+# be treated as compromised and revoked, since it was public here for years.
+# Original form (token replaced):
+#   -e git+https://<TOKEN>:x-oauth-basic@github.com/WattSocialBot/utils.git@556becb171b75bde37c4073ee5496a3333f3be3f#egg=utils
 uvloop==0.14.0
 virtualenv==16.7.9
 wasabi==0.6.0
